@@ -1,0 +1,14 @@
+.nav {
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
+  align-items: baseline;
+}
+
+h2 {
+  text-align: left;
+  padding-left: 25px;
+}
+
+h4{
+  text-align: right;
+}

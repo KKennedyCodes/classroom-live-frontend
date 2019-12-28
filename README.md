@@ -1,3 +1,7 @@
+Dependencies:
+Vanilla Bootstrap (Version 4.4.1) - npm install bootstrap
+React Bootstrap (Version 1.0.0) - npm install react-bootstrap bootstrap
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import './NavBar.css';
 
 class NavBar extends React.Component {
@@ -12,10 +14,10 @@ class NavBar extends React.Component {
     
   render () {
     return (
-      <nav className="nav">
-        <h2>Classroom Live - Welcome, {this.state.user}!</h2>
-        <p>Go Live</p>
-        <p>Logout</p>
+      <nav>
+        <h2 className="title">Classroom Live - Welcome, {this.state.user}!</h2>
+        <div><Button variant="outline-danger" className="TopButton">Go Live </Button></div>
+        <div><Button variant="light" className="TopButton">Logout</Button></div>
       </nav>
     )};
 }

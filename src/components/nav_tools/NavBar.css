@@ -1,14 +1,19 @@
-.nav {
+nav {
   display: grid;
-  grid-template-columns: 8fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   align-items: baseline;
 }
 
-h2 {
+.title {
   text-align: left;
   padding-left: 25px;
+  display: inline;
 }
 
-h4{
+.TopButton {
   text-align: right;
+}
+
+div {
+  display: inline;
 }

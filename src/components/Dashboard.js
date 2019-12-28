@@ -11,8 +11,9 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      teacher: undefined,
-      course: undefined,
+      user: "Katie Kennedy",
+      userType: teacher,
+      loggedIn: true,
     };
   }
     

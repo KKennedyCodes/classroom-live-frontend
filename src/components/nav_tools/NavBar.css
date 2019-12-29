@@ -1,19 +1,18 @@
-nav {
+.navContainer {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  align-items: baseline;
+  width: 100vw;
+  grid-template-columns: auto 100px 100px;
+  align-items: center;
+  padding-top: 30px;
 }
 
 .title {
   text-align: left;
-  padding-left: 25px;
-  display: inline;
+  margin-left: 15px;
+  grid-row: 1 / span 2;
 }
 
 .TopButton {
   text-align: right;
-}
-
-div {
-  display: inline;
+  margin-right: 15px;
 }

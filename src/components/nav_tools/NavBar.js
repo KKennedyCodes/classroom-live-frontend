@@ -14,11 +14,11 @@ class NavBar extends React.Component {
     
   render () {
     return (
-      <nav>
-        <h2 className="title">Classroom Live - Welcome, {this.state.user}!</h2>
-        <div><Button variant="outline-danger" className="TopButton">Go Live </Button></div>
-        <div><Button variant="light" className="TopButton">Logout</Button></div>
-      </nav>
+      <section className='navContainer'>
+        <div className="title"><h2>Classroom Live</h2></div>
+        <div className="TopButton"><Button variant="outline-danger">Go Live </Button></div>
+        <div className="TopButton"><Button variant="light">Logout</Button></div>
+      </section>
     )};
 }
 

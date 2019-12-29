@@ -15,7 +15,7 @@ class CourseList extends React.Component {
 
   displayCourses = () => {
     const courseList = this.state.courses.map((course, i) => {
-      return <Button variant="light">{course}</Button>
+      return <Button variant="light" className="courseButton">{course}</Button>
     })
 
     return courseList;
@@ -24,10 +24,9 @@ class CourseList extends React.Component {
   render () {
     return (
       <nav className="nav">
-        <h3>Course List</h3>
         <ButtonToolbar className="ButtonGroup">
           {this.displayCourses()}   
-          <Button variant="outline-secondary">Add a Course</Button>       
+          <Button variant="outline-secondary" className="courseButton">Add a Course</Button>       
         </ButtonToolbar>
       </nav>
     )};

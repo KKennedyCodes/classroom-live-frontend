@@ -1,7 +1,32 @@
+.body {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .ButtonGroup {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-content: space-around;
+  align-content: space-evenly;
+  align-items: stretch;
+}
+
+.CourseDetails {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2fr 1fr;
+  align-items: top;
+  padding-top: 30px;
+}
+
+.courseButton {
+  margin: 10px;
+}
+
+.courseSpecs {
+  text-align: right;
+}
+
+.subTitle {
+  font-weight: bold;
 }

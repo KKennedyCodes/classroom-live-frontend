@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Session from './Session.js';
 import { thisExpression } from '@babel/types';
+import './Session.css';
 
 class Course extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Course extends React.Component {
 displaySessions = () => {
    
     const sessionList = this.state.logs.map((date, i) => {
-      return <Session date={date} value={i} />
+      return <Session date={date} value={i} className="courseSession" />
     });
 
     return sessionList;

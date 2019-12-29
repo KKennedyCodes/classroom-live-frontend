@@ -19,7 +19,8 @@ class Session extends React.Component {
           {this.props.date} Click me! 
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.value}>
-          <Card.Body>Hello! I'm the body
+          <Card.Body>
+            <p>Hello! I'm the body</p>
             <Button variant="outline-secondary">Details ◢</Button>
           </Card.Body>
         </Accordion.Collapse>

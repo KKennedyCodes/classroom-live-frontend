@@ -20,20 +20,20 @@ class Course extends React.Component {
     
   render () {
     return (
-      <div>
-      <section className="CourseDetails">
-        <p>{this.state.courseTitle}</p>
-        <p>{this.state.courseSection}</p>
-        <p>{this.state.students.length} Students</p>
-        <p>●</p>
-        <p>{this.state.sessionIds.length} Logs</p>
-        <p>●</p>
-        <p>Avg. Wait Time</p>
-      </section>
-      <section>
-        <p>Classroom Live Log</p>
-        <SessionList />
-      </section>
+      <div className="body">
+        <section className="CourseDetails">
+          <div>
+            <h4>{this.state.courseTitle}</h4>
+            <p>{this.state.courseSection}</p>
+          </div>
+          <div className="courseSpecs">
+            <p>{this.state.students.length} Students    •   {this.state.sessionIds.length} Logs   •   Avg. Wait Time</p>
+          </div>
+        </section>
+        <section>
+          <p className="subTitle">Classroom Live Log:</p>
+          <SessionList />
+        </section>
       </div>
     )};
 }

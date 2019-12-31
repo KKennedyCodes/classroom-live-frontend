@@ -1,7 +1,7 @@
 .navContainer {
   display: grid;
   width: 100vw;
-  grid-template-columns: auto 100px 100px;
+  grid-template-columns: auto 115px 115px 115px;
   align-items: center;
   padding-top: 30px;
 }

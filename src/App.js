@@ -17,37 +17,38 @@ class App extends React.Component {
 
   render () {
   return (
-      <div className="App">
-        <section className="Container">
-          <header><NavBar /></header>
-          <menu><CourseList /></menu>
-          <main><LiveForm /><Course /></main>
-          <footer></footer>
-        </section>
-      </div>
-
-
-/* <Router>
+    <Router>
         <div className="App">
-            <h1>Ada Movie Store</h1>
-            <section><Rental movie={this.state.selectedMovie} customer={this.state.selectedCustomer} clearSelection={this.clearSelection}/></section>
-            <ul className="header">
-              <li><NavLink to="/video-store-consumer/search">Search</NavLink></li>
+          <section className="Container">
+            <header>
+              <NavBar />
+              {/* <li><NavLink to="/video-store-consumer/search">Search</NavLink></li>
               <li><NavLink to="/video-store-consumer/movies">Movies</NavLink></li>
               <li><NavLink to="/video-store-consumer/customers">Customers</NavLink></li>
-              <li><NavLink to="/video-store-consumer/rentals">Rentals</NavLink></li>
-            </ul>
-            <div className="content">
-              <Route path="/video-store-consumer/search" component={Search}/>
-              <Route path="/video-store-consumer/movies" render={() => <RentalLibrary selectMovie={this.selectMovie}/>}/>
-              <Route path="/video-store-consumer/customers" render={() => <CustomerList selectCustomer={this.selectCustomer} />}/>
-              <Route path="/video-store-consumer/rentals" component={RentalsList}/>
-            </div>
+              <li><NavLink to="/video-store-consumer/rentals">Rentals</NavLink></li> */}
+            </header>
+            <menu><CourseList /></menu>
+            <main>
+              <div className="content">
+                {/* <Route path="/dashboard" component={LiveForm}/> */}
+                <Route path="/live" component={LiveForm}/>
+                <Route path="/courses/:id" component={Course}/>
+                {/* <Route path="/video-store-consumer/movies" render={() => <RentalLibrary selectMovie={this.selectMovie}/>}/>
+                <Route path="/video-store-consumer/customers" render={() => <CustomerList selectCustomer={this.selectCustomer} />}/>
+                <Route path="/video-store-consumer/rentals" component={RentalsList}/> */}
+              </div>
+
+            </main>
+            <footer>
+
+            </footer>
+            
+            </section>
           </div>
-      </Router> */
-
-
+      </Router>
   );
 }}
 
 export default App;
+
+

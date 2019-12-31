@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Route, NavLink, BrowserRouter as Router} from "react-router-dom";
+import NavBar from './components/nav_tools/NavBar.js';
+import CourseList from './components/courses/CourseList.js';
+import Course from './components/courses/Course.js';
+import LiveForm from './components/input/LiveForm.js';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 // import Search from "./Search";
 // import Rental from "./Rental";
 // import RentalsList from "./RentalsList";
@@ -11,55 +16,98 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      user: "Katie Kennedy",
-      userType: teacher,
-      loggedIn: true,
+      user_courses: [],
+      selected_course: undefined,
     };
   }
-    
-  // selectCustomer = (customer) => {
-  //   this.setState({
-  //     selectedCustomer: customer,
-  //   });
-  // }
+  
+  getCourses () {
+    this.fetch('/courses')
+      .then(words => {
+        if (courses.length) {
+          this.setState({user_courses: courses})
+          this.getCourse(courses[0].id)
+        } else {
+          this.setState({courses: []})
+        }
+      })
+  }
 
-  // selectMovie = (movie) => {
-  //   this.setState({ 
-  //     selectedMovie: movie
-  //   });
-  // }
+  componentDidMount () {
+    this.getCourses()
+  }
 
-  // clearSelection = () => {
-  //   this.setState({
-  //     selectedCustomer: undefined,
-  //     selectedMovie: undefined,
-  //     rentalSubmitted: true,
-  //   })
-  // }
+  selectedCourse = (course) => {
+    this.setState({
+      selectedCourse: course,
+    });
+  }
+
+  clearSelection = () => {
+    this.setState({
+      selectedCourse: undefined,
+    })
+  }
 
   render () {
     return (
-      // <Router>
-      //   <div className="App">
-      //       <h1>Classroom Live - Welcome, User</h1>
-      //       {/* <section><Rental movie={this.state.selectedMovie} customer={this.state.selectedCustomer} clearSelection={this.clearSelection}/></section> */}
-      //       <ul className="header">
-      //         {/* only show if course selected */}
-      //         <li><NavLink to="/live">Go Live</NavLink></li> 
-      //         {/* <li><NavLink to="/settings">Settings</NavLink></li> */}
-      //         <li><NavLink to="/logout">Logout</NavLink></li>
-      //         {/* <li><NavLink to="/video-store-consumer/rentals">Rentals</NavLink></li> */}
-      //       </ul>
-      //       <div className="content">
-      //         <Route path="/video-store-consumer/search" component={Search}/>
-      //         <Route path="/video-store-consumer/movies" render={() => <RentalLibrary selectMovie={this.selectMovie}/>}/>
-      //         <Route path="/video-store-consumer/customers" render={() => <CustomerList selectCustomer={this.selectCustomer} />}/>
-      //         <Route path="/video-store-consumer/rentals" component={RentalsList}/>
-      //       </div>
-      //     </div>
-      // </Router>
+      <div className="App">
+        <section className="Container">
+          <header><NavBar /></header>
+          <menu><CourseList /></menu>
+          <main><LiveForm /><Course /></main>
+          <footer></footer>
+        </section>
+      </div>
     )
   }
 }
 
-export default Home;
+export default Dashboard;
+
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      words : [],
+      word : {}
+    }
+    this.getWords = this.getWords.bind(this)
+    this.getWord = this.getWord.bind(this)
+  }
+
+  
+
+  fetch (endpoint) {
+    return window.fetch(endpoint)
+      .then(response => response.json())
+      .catch(error => console.log(error))
+  }
+
+
+
+  getWord (id) {
+    this.fetch(`/api/words/${id}`)
+      .then(word => this.setState({word: word}))
+  }
+
+  render () {
+    let {words} = this.state
+    return (
+      <ul className="words-container">
+        {Object.keys(words).map((key) => {
+          return (
+            <li className="word-container" key={key}>
+              {words[key].term}: {words[key].definition}.
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+}
+
+export default App;

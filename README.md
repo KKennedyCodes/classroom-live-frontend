@@ -1,6 +1,15 @@
 Dependencies:
 Vanilla Bootstrap (Version 4.4.1) - npm install bootstrap
 React Bootstrap (Version 1.0.0) - npm install react-bootstrap bootstrap
+rc-time-picker (Version 3.7.3) - npm install rc-time-picker
+Documentation: http://react-component.github.io/time-picker/
+Moment (Version 2.24.0) - npm install moment
+Documentation: https://www.npmjs.com/package/moment
+
+React Router Dom (Version 5.1.2) - npm i react-router-dom --save
+Resources from React Router Tutorial: https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

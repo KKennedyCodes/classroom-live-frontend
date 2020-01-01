@@ -12,8 +12,18 @@ class NavBar extends React.Component {
       course: 1,
     };
   }
-    
-  render () {
+
+  logIn = () => {
+    return (
+      <section className='logInView'>
+        <div className="TopButton"><NavLink to="/dashboard">
+          <Button variant="light" onClick={this.props.login}>Login</Button></NavLink>
+        </div>
+      </section>
+    );
+  }
+
+  loggedInTools = () => {
     return (
       <section className='navContainer'>
         <div className="title"><img src="https://live.staticflickr.com/65535/49296000551_fe05df3618_b.jpg" className="title logo" alt="ClassroomLogo" /><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script></div>
@@ -23,9 +33,18 @@ class NavBar extends React.Component {
         <div className="TopButton"><NavLink to="/live">
           <Button variant="outline-danger">Go Live</Button></NavLink>
         </div>
-        <div className="TopButton"><NavLink to="/logout">
-          <Button variant="light">Logout</Button></NavLink>
+        <div className="TopButton"><NavLink to="/">
+          <Button variant="light" onClick={this.props.logout}>Logout</Button></NavLink>
         </div>
+      </section>
+    );
+  }
+  render () {
+    console.log(this.props.loggedIn);
+    return (
+      <section className='navContainer'>
+        
+        {this.props.loggedIn ? this.loggedInTools() : this.logIn()}
       </section>
     )};
 }

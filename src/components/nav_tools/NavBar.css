@@ -3,7 +3,7 @@
   width: 100vw;
   grid-template-columns: auto 115px 115px 115px;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 .title {
@@ -20,4 +20,11 @@
 
 .logo {
   width: 30%;
+}
+
+.logInView {
+  width: 100vw;
+  text-align:right;
+  margin-right: 15px;
+  padding-top: 20px;
 }

@@ -10,6 +10,10 @@
   grid-template-rows: 100px auto 30px;
 }
 
+.homeTitle {
+  width: 100%;
+}
+
 header {
   grid-column: 1 / span 3;
   width: 100%;

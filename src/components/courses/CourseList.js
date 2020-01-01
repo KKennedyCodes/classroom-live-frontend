@@ -26,7 +26,7 @@ class CourseList extends React.Component {
       <nav className="nav">
         <ButtonToolbar className="ButtonGroup">
           {this.displayCourses()}   
-          <Button variant="outline-secondary" className="courseButton">Add a Course</Button>       
+          <Button variant="outline-secondary" >Add a Course</Button>       
         </ButtonToolbar>
       </nav>
     )};

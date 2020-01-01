@@ -1,0 +1,23 @@
+.liveContainer {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: auto 115px 115px 115px;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.title {
+  text-align: left;
+  margin-left: 15px;
+  grid-row: 1 / span 2;
+  margin-top: -5px;
+}
+
+.TopButton {
+  text-align: right;
+  margin-right: 15px;
+}
+
+.logo {
+  width: 30%;
+}

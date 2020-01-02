@@ -12,7 +12,8 @@ Resources from React Router Tutorial: https://www.kirupa.com/react/creating_sing
 axios
 use: import axios from 'axios';
 
-
+Stopwatch Timer created by Peter Durham
+Link: https://medium.com/@peterjd42/building-timers-in-react-stopwatch-and-countdown-bc06486560a2
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

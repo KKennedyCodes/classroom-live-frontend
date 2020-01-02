@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Stopwatch from "./Stopwatch";
 
 class LiveStudentView extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class LiveStudentView extends React.Component {
   render () {
     return (
       <section className='liveContainer'>
-        <div className='liveHeader'>History 101 - Live Session Timer End</div>
+        <div className='liveHeader'>History 101 - Live Session Timer End <Stopwatch /></div>
         <div className='liveDetails'>Task - Task Objective</div>
         <div className='liveContent'>Q&A
         </div>

@@ -23,8 +23,9 @@ class Course extends React.Component {
       <div className="body">
         <section className="CourseDetails">
           <div>
-            <h4>{this.props.title}</h4>
-            <p>{this.props.section}</p>
+            <h4>{this.props.course.course.title}</h4>
+            <p>{this.props.course.course.section}</p>
+            <p>Course Code: {this.props.course.course.code}</p>
           </div>
           <div className="courseSpecs">
             <p>{this.state.students.length} Students    •   {this.state.sessionIds.length} Logs   •   Avg. Wait Time</p>

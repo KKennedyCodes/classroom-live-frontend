@@ -51,7 +51,7 @@ class CourseList extends React.Component {
   displayCourses = () => {
     const courseList = this.state.courses.map((course, i) => {
         let link="/courses/"+course.id;
-        return <NavLink to={link}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
+        return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
     });
     return courseList;
   }

@@ -3122,7 +3122,7 @@ cssnano-preset-default@^4.0.7:
     postcss-minify-gradients "^4.0.2"
     postcss-minify-params "^4.0.2"
     postcss-minify-selectors "^4.0.2"
-    postcss-normalize-charset "^4.0.1"
+    postcss-normalize-charSet "^4.0.1"
     postcss-normalize-display-values "^4.0.2"
     postcss-normalize-positions "^4.0.2"
     postcss-normalize-repeat-style "^4.0.2"
@@ -7765,9 +7765,9 @@ postcss-nesting@^7.0.0:
   dependencies:
     postcss "^7.0.2"
 
-postcss-normalize-charset@^4.0.1:
+postcss-normalize-charSet@^4.0.1:
   version "4.0.1"
-  resolved "https://registry.yarnpkg.com/postcss-normalize-charset/-/postcss-normalize-charset-4.0.1.tgz#8b35add3aee83a136b0471e0d59be58a50285dd4"
+  resolved "https://registry.yarnpkg.com/postcss-normalize-charSet/-/postcss-normalize-charSet-4.0.1.tgz#8b35add3aee83a136b0471e0d59be58a50285dd4"
   integrity sha512-gMXCrrlWh6G27U0hF3vNvR3w8I1s2wOBILvA87iNXaPvSNo5uZAMYsZG7XjCUf1eVxuPfyL4TJ7++SGZLc9A3g==
   dependencies:
     postcss "^7.0.0"

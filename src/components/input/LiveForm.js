@@ -10,7 +10,6 @@ class LiveForm extends React.Component {
   }
 
   displayCourses = () => {
-    console.log(this.props.userCourses)
     const courseList = (this.props.userCourses).map((course, i) => {
       console.log(course);
       return <option key={i}>{course.title}</option>

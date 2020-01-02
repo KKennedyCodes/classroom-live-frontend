@@ -6,11 +6,6 @@ import NewCourseForm from './input/NewCourseForm.js';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, Switch, BrowserRouter as Router} from "react-router-dom";
-// import Search from "./Search";
-// import Rental from "./Rental";
-// import RentalsList from "./RentalsList";
-// import RentalLibrary from "./RentalLibrary";
-// import CustomerList from "./CustomerList";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -38,11 +33,11 @@ class Dashboard extends React.Component {
 
   render () {
     return (
-
+      
         <section className="DashboardContainer">
           <menu><CourseList selectCourse={this.selectCourse} setCourses={this.userCourses}/></menu>
           <main>
-          {this.state.course_selected ? <Course course={this.state.course}/> : ''}
+          {/* {this.state.course_selected ? <Course course={this.state.course}/> : ''} */}
           <Switch>
             <Route path="/dashboard">
               <p>Welcome to Classroom Live, Select a Course to View</p>
@@ -54,7 +49,7 @@ class Dashboard extends React.Component {
               <NewCourseForm />
             </Route> 
             <Route exact path="/courses/:id">
-              <Course course={this.props.course} />
+              <Course course={this.state.course} />
             </Route>
              
           </Switch>

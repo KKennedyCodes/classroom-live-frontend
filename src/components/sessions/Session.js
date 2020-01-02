@@ -12,7 +12,6 @@ class Session extends React.Component {
   }
     
   render () {
-    console.log(this.props.key);
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.value}>

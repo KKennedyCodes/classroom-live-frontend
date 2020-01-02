@@ -14,48 +14,27 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      user_courses: [],
-      selected_course: undefined,
+      course_selected: false,
+      course: undefined,
     };
   }
   
-  getCourses () {
-    this.fetch('/courses')
-      .then(words => {
-        if (courses.length) {
-          this.setState({user_courses: courses})
-          this.getCourse(courses[0].id)
-        } else {
-          this.setState({courses: []})
-        }
-      })
-  }
-
-  componentDidMount () {
-    this.getCourses()
-  }
-
-  selectedCourse = (course) => {
+  selectCourse = (course) => {
     this.setState({
-      selectedCourse: course,
-    });
-  }
-
-  clearSelection = () => {
-    this.setState({
-      selectedCourse: undefined,
+      course_selected: true,
+      course: course,
     })
   }
+
 
   render () {
     return (
       <div className="App">
         <section className="Container">
           <header><NavBar /></header>
-          <menu><CourseList /></menu>
-          <main><LiveForm /><Course /></main>
+          <menu><CourseList selectCourse={this.selectCourse}/></menu>
+          <main>{this.state.course_selected ? <Course course={this.state.course}/> : ''}</main>
           <footer></footer>
         </section>
       </div>
@@ -65,49 +44,49 @@ class Dashboard extends React.Component {
 
 export default Dashboard;
 
-import React, { Component } from 'react';
-import './App.css';
+// import React, { Component } from 'react';
+// import './App.css';
 
-class App extends Component {
-  constructor () {
-    super()
-    this.state = {
-      words : [],
-      word : {}
-    }
-    this.getWords = this.getWords.bind(this)
-    this.getWord = this.getWord.bind(this)
-  }
+// class App extends Component {
+//   constructor () {
+//     super()
+//     this.state = {
+//       words : [],
+//       word : {}
+//     }
+//     this.getWords = this.getWords.bind(this)
+//     this.getWord = this.getWord.bind(this)
+//   }
 
   
 
-  fetch (endpoint) {
-    return window.fetch(endpoint)
-      .then(response => response.json())
-      .catch(error => console.log(error))
-  }
+//   fetch (endpoint) {
+//     return window.fetch(endpoint)
+//       .then(response => response.json())
+//       .catch(error => console.log(error))
+//   }
 
 
 
-  getWord (id) {
-    this.fetch(`/api/words/${id}`)
-      .then(word => this.setState({word: word}))
-  }
+//   getWord (id) {
+//     this.fetch(`/api/words/${id}`)
+//       .then(word => this.setState({word: word}))
+//   }
 
-  render () {
-    let {words} = this.state
-    return (
-      <ul className="words-container">
-        {Object.keys(words).map((key) => {
-          return (
-            <li className="word-container" key={key}>
-              {words[key].term}: {words[key].definition}.
-            </li>
-          )
-        })}
-      </ul>
-    )
-  }
-}
+//   render () {
+//     let {words} = this.state
+//     return (
+//       <ul className="words-container">
+//         {Object.keys(words).map((key) => {
+//           return (
+//             <li className="word-container" key={key}>
+//               {words[key].term}: {words[key].definition}.
+//             </li>
+//           )
+//         })}
+//       </ul>
+//     )
+//   }
+// }
 
-export default App;
+// export default App;

@@ -7,10 +7,29 @@ class CourseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: "Katie",
-      course: 1,
-      courses: ["History 101 - P1", "History 101 - P2", "Intro to Gov't", "Civics"],
+      courses: [],
+      selected_course: '',
     };
+  }
+
+  getCourses () {
+    
+  }
+
+  componentDidMount () {
+    this.getCourses()
+  }
+
+  selectedCourse = (course) => {
+    this.setState({
+      selectedCourse: course,
+    });
+  }
+
+  clearSelection = () => {
+    this.setState({
+      selectedCourse: undefined,
+    })
   }
 
   displayCourses = () => {

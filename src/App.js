@@ -1,13 +1,10 @@
 import React from 'react';
-import { Route, NavLink, BrowserRouter as Router} from "react-router-dom";
 import NavBar from './components/nav_tools/NavBar.js';
-import CourseList from './components/courses/CourseList.js';
-import Course from './components/courses/Course.js';
-import LiveStudentView from './components/live/LiveStudentView.js';
 import Home from './components/Home.js';
-import LiveForm from './components/input/LiveForm.js';
+import Dashboard from './components/Dashboard.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter as Router} from "react-router-dom";
 // src/components/nav_tools/NavBar.js
 class App extends React.Component {
   constructor(props){
@@ -32,36 +29,23 @@ class App extends React.Component {
 
   render () {
   return (
-    <Router>
+  <Router>
         <div className="App">
-          <section className="Container">
+          <section className="AppContainer">
             <header>
               <NavBar loggedIn={this.state.loggedIn} login={this.login} logout={this.logout}/>
-              {/* <li><NavLink to="/video-store-consumer/search">Search</NavLink></li>
-              <li><NavLink to="/video-store-consumer/movies">Movies</NavLink></li>
-              <li><NavLink to="/video-store-consumer/customers">Customers</NavLink></li>
-              <li><NavLink to="/video-store-consumer/rentals">Rentals</NavLink></li> */}
             </header>
-            <menu>{this.state.loggedIn ? <CourseList /> : ""}</menu>
-            <main>
-              <div className="content">
-                {/* <Route path="/dashboard" component={LiveForm}/> */}
-                <Route exact path="/" component={Home}/>
-                <Route path="/live" component={LiveStudentView}/>
-                <Route path="/courses/:id" component={Course}/>
-                {/* <Route path="/video-store-consumer/movies" render={() => <RentalLibrary selectMovie={this.selectMovie}/>}/>
-                <Route path="/video-store-consumer/customers" render={() => <CustomerList selectCustomer={this.selectCustomer} />}/>
-                <Route path="/video-store-consumer/rentals" component={RentalsList}/> */}
-              </div>
-
-            </main>
+            <section>
+              {this.state.loggedIn ? <Dashboard /> : <Home />}
+            </section>
             <footer>
-
+                  <p>Classroom Live - Created By Katie Kennedy, Ada Developers Academy - Cohort 12</p>
             </footer>
             
             </section>
           </div>
-      </Router>
+          </Router>
+
   );
 }}
 

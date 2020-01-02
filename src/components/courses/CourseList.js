@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import axios from 'axios';
 import './Course.css';
 
 class CourseList extends React.Component {
@@ -9,15 +10,27 @@ class CourseList extends React.Component {
     this.state = {
       courses: [],
       selected_course: '',
+      error: undefined,
     };
   }
 
   getCourses () {
-    
+    axios.get('http://localhost:3000/courses')
+    .then((response) => {
+      this.setState({
+        courses: response.data,
+      });
+      this.props.setCourses(response.data);
+      this.displayCourses();
+      
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
   }
 
   componentDidMount () {
-    this.getCourses()
+    this.getCourses();
   }
 
   selectedCourse = (course) => {
@@ -34,7 +47,7 @@ class CourseList extends React.Component {
 
   displayCourses = () => {
     const courseList = this.state.courses.map((course, i) => {
-      return <Button variant="light" className="courseButton">{course}</Button>
+      return <Button variant="light" className="courseButton" key={i}>{course.title}</Button>
     })
 
     return courseList;
@@ -45,7 +58,7 @@ class CourseList extends React.Component {
       <nav className="nav">
         <ButtonToolbar className="ButtonGroup">
           {this.displayCourses()}   
-          <Button variant="outline-secondary" >Add a Course</Button>       
+          <Button variant="outline-secondary" className="courseButton">Add a Course</Button>       
         </ButtonToolbar>
       </nav>
     )};

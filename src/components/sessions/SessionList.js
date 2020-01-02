@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Session from './Session.js';
-import { thisExpression } from '@babel/types';
 import './Session.css';
 
 class Course extends React.Component {

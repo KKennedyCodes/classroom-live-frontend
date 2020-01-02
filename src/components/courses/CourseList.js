@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import axios from 'axios';
+import { NavLink} from "react-router-dom";
 import './Course.css';
 
 class CourseList extends React.Component {
@@ -9,7 +10,7 @@ class CourseList extends React.Component {
     super(props);
     this.state = {
       courses: [],
-      selected_course: '',
+      selected_course: 'Humanology',
       error: undefined,
     };
   }
@@ -35,30 +36,33 @@ class CourseList extends React.Component {
 
   selectedCourse = (course) => {
     this.setState({
-      selectedCourse: course,
+      selected_course: course,
     });
   }
 
   clearSelection = () => {
+    console.log(this.state.selected_course);
     this.setState({
-      selectedCourse: undefined,
+      selected_course: undefined,
     })
+    console.log(this.state.selected_course);
   }
 
   displayCourses = () => {
     const courseList = this.state.courses.map((course, i) => {
-      return <Button variant="light" className="courseButton" key={i}>{course.title}</Button>
-    })
-
+        let link="/courses/"+course.id;
+        return <NavLink to={link}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
+    });
     return courseList;
   }
     
   render () {
+    
     return (
       <nav className="nav">
         <ButtonToolbar className="ButtonGroup">
           {this.displayCourses()}   
-          <Button variant="outline-secondary" className="courseButton">Add a Course</Button>       
+          <NavLink to="/courses/new"><Button variant="outline-secondary" className="courseButton">Add a Course</Button></NavLink>       
         </ButtonToolbar>
       </nav>
     )};

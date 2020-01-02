@@ -2,6 +2,7 @@ import React from 'react';
 import CourseList from './courses/CourseList.js';
 import Course from './courses/Course.js';
 import LiveForm from './input/LiveForm.js';
+import NewCourseForm from './input/NewCourseForm.js';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, Switch, BrowserRouter as Router} from "react-router-dom";
@@ -41,12 +42,21 @@ class Dashboard extends React.Component {
         <section className="DashboardContainer">
           <menu><CourseList selectCourse={this.selectCourse} setCourses={this.userCourses}/></menu>
           <main>
-          {/* {this.state.course_selected ? <Course course={this.state.course}/> : ''} */}
+          {this.state.course_selected ? <Course course={this.state.course}/> : ''}
           <Switch>
+            <Route path="/dashboard">
+              <p>Welcome to Classroom Live, Select a Course to View</p>
+            </Route>
             <Route path="/startlive">
               <LiveForm userCourses={this.state.courses} />
             </Route>
-            <Route path="/courses/:id" component={Course}/>
+            <Route exact path="/courses/new">
+              <NewCourseForm />
+            </Route> 
+            <Route exact path="/courses/:id">
+              <Course course={this.props.course} />
+            </Route>
+             
           </Switch>
           </main>
         </section>

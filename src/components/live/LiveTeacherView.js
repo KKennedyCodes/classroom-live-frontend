@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import QuestionList from '../QuestionsAnswers/QuestionList.js';
+import StatusList from '../statuses/StatusList.js';
 import Stopwatch from "./Stopwatch";
 
 class LiveStudentView extends React.Component {
@@ -18,7 +19,7 @@ class LiveStudentView extends React.Component {
     return (
       <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
         <Tab eventKey="status" title="Status">
-          <p>Status</p>
+          <p><StatusList /></p>
         </Tab>
         <Tab eventKey="questions" title="Questions">
           <section><QuestionList /></section>

@@ -13,9 +13,8 @@ class QuestionList extends React.Component {
 
 displayQuestions = () => {
     const questionList = this.state.questions.map((question, i) => {
-      return <Question value={i} className="courseQuestion" />
+      return <Question value={i} className="courseQuestion" question={question}/>
     });
-
     return questionList;
   }
     
@@ -26,6 +25,7 @@ displayQuestions = () => {
         {this.displayQuestions()}
         </Accordion>
       </div>
+
     )};
 }
 

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import {Card, Button, Accordion} from 'react-bootstrap';
 import AnswerList from './AnswerList.js';
 // import './Course.css';
 
@@ -13,19 +11,16 @@ class Question extends React.Component {
   }
     
   render () {
-    console.log(this.props.key);
+    console.log(this.props.question);
     return (
-      <Card>
-        <Accordion.Toggle as={Card.Header} eventKey={this.props.value}>
-          {this.props.date} Question
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey={this.props.value}>
-          <Card.Body>
-            <p><AnswerList /></p>
-            {/* <Button variant="outline-secondary">Details ◢</Button> */}
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
+    <Card>
+      <Accordion.Toggle as={Card.Header} variant="link" eventKey={this.props.value}>
+       {this.props.question}
+      </Accordion.Toggle>
+    <Accordion.Collapse eventKey={this.props.value}>
+      <Card.Body><AnswerList /></Card.Body>
+    </Accordion.Collapse>
+  </Card>
     )};
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import SessionList from '../sessions/SessionList.js';
 // import './LiveStudentView.css';
@@ -17,6 +17,8 @@ class LiveStudentView extends React.Component {
       sessionIds: [1,2,3,4,5],
     };
   }
+
+
     
   render () {
     return (
@@ -32,6 +34,7 @@ class LiveStudentView extends React.Component {
         </section>
         <section>
           <p className="subTitle">Classroom Live Log:</p>
+          
           <SessionList />
         </section>
       </div>

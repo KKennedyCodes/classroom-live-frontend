@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Answer from './Answer.js';
 // import './Session.css';
@@ -20,11 +20,11 @@ displayAnswers = () => {
     
   render () {
     return (
-      <div>
+      <section>
         <ListGroup varaint="flush">
         {this.displayAnswers()}
         </ListGroup>
-      </div>
+      </section>
 
     )};
 }

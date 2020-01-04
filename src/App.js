@@ -53,9 +53,9 @@ class App extends React.Component {
   render () {
   return (
   <Router>
-        <div className="App">
+        <section className="App">
           {this.state.live ? this.live() : this.notLive()}
-        </div>
+        </section>
   </Router>
 
   );

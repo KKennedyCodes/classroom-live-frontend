@@ -5,7 +5,7 @@ import LiveForm from './input/LiveForm.js';
 import NewCourseForm from './input/NewCourseForm.js';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Route, Switch, BrowserRouter as Router} from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 
 class Dashboard extends React.Component {
   constructor(props) {

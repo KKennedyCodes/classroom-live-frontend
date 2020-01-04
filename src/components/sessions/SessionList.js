@@ -28,11 +28,11 @@ displaySessions = () => {
     
   render () {
     return (
-      <div>
+      <section>
         <Accordion defaultActiveKey="0">
         {this.displaySessions()}
         </Accordion>
-      </div>
+      </section>
     )};
 }
 

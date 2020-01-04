@@ -43,12 +43,12 @@ class Stopwatch extends Component {
     let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
 
     return (
-      <div className="Stopwatch">
-        <div className="Stopwatch-header">Stopwatch</div>
-        <div className="Stopwatch-display">
+      <section className="Stopwatch">
+        <section className="Stopwatch-header">Stopwatch</section>
+        <section className="Stopwatch-display">
   {hours} : {minutes} : {seconds}
   {/* {hours} : {minutes} : {seconds} : {centiseconds} */}
-</div>
+</section>
 {this.state.timerOn === false && this.state.timerTime === 0 && (
   <button onClick={this.startTimer}>Start</button>
 )}
@@ -61,7 +61,7 @@ class Stopwatch extends Component {
 {this.state.timerOn === false && this.state.timerTime > 0 && (
   <button onClick={this.resetTimer}>Reset</button>
 )}
-      </div>
+      </section>
     );
   }
 }

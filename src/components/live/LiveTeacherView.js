@@ -57,16 +57,15 @@ class LiveStudentView extends React.Component {
   }
     
   render () {
-    console.log(this.state.codes);
     return (
       <section className='liveContainer'>
-        <div className='liveHeader'>History 101 - Live Session Timer End <Stopwatch /></div>
-        <div className='liveDetails'>Task - Task Objective</div>
-        <div className='statusKey'><StatusKey codes={this.state.codes} /></div>
-        <div className='liveContent'>{this.liveToolbar()}</div>
-        <div className='selected'>Selected Student</div>
-        <div className='teachInfo'>Teacher Info</div>
-        <div className='studentQueue'>Student Queue</div>
+        <section className='liveHeader'>History 101 - Live Session Timer End <Stopwatch /></section>
+        <section className='liveDetails'>Task - Task Objective</section>
+        <section className='statusKey'><StatusKey codes={this.state.codes} /></section>
+        <section className='liveContent'>{this.liveToolbar()}</section>
+        <section className='selected'>Selected Student</section>
+        <section className='teachInfo'>Teacher Info</section>
+        <section className='studentQueue'>Student Queue</section>
       </section>
     )};
 }

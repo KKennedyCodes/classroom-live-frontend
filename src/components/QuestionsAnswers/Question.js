@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Card, Button, Accordion} from 'react-bootstrap';
+import React from 'react';
+import {Card, Accordion} from 'react-bootstrap';
 import AnswerList from './AnswerList.js';
 // import './Course.css';
 
@@ -11,7 +11,6 @@ class Question extends React.Component {
   }
     
   render () {
-    console.log(this.props.question);
     return (
     <Card>
       <Accordion.Toggle as={Card.Header} variant="link" eventKey={this.props.value}>

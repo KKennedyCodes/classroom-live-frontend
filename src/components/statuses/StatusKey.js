@@ -9,32 +9,32 @@ class StatusKey extends React.Component {
   }    
 
   displayCodes = () => {
-    console.log(this.props.codes);
     const codeList = this.props.codes.map((code, i) => {
       let styling = {code};
-      let colorVariant = "";
+      let colorVariant = '';
       let caption = "No Status";
       if (styling.code.color === "red") {
         colorVariant="danger";
         caption = "Stuck"
       }
       else if (styling.code.color === "yellow") {
-        colorVariant='warning';
         caption = "Question"
+        colorVariant='warning';
       }
       else if (styling.code.color === "green") {
-        colorVariant='success';
         caption = "Working"
+        colorVariant='success';
       }
       else if (styling.code.color === "blue") {
-        colorVariant = 'primary';
         caption = "Done"
+        colorVariant = 'primary';
       }
-      else {
+      else{
         colorVariant = 'light';
       }
         return (
-          <Button variant={colorVariant}>
+          
+          <Button variant={colorVariant} key={i}>
             {caption} 
             <Badge variant="light">
               #
@@ -48,9 +48,9 @@ class StatusKey extends React.Component {
 
   render () {
     return (
-      <div>
+      <section>
         {this.displayCodes()}
-      </div>
+      </section>
     )};
 }
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Question from './Question.js';
 // import './Session.css';
@@ -20,11 +20,11 @@ displayQuestions = () => {
     
   render () {
     return (
-      <div>
+      <section>
         <Accordion defaultActiveKey="0">
         {this.displayQuestions()}
         </Accordion>
-      </div>
+      </section>
 
     )};
 }

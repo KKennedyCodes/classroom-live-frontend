@@ -23,7 +23,7 @@ class Course extends React.Component {
             <h4>{this.props.course.course.title}</h4>
             <p>Section: {this.props.course.course.section} <br />Code: {this.props.course.course.code}</p>
           <section className="courseSpecs">
-            <p>{this.state.students.length} Students    •   {this.state.sessionIds.length} Logs   •   Avg. Wait Time</p>
+            {/* <p>{this.state.students.length} Students    •   {this.state.sessionIds.length} Logs   •   Avg. Wait Time</p> */}
           </section>
         </section>
         <section>

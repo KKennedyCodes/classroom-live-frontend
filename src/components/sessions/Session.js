@@ -2,6 +2,7 @@ import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Moment from 'react-moment';
 // import './Course.css';
 
 class Session extends React.Component {
@@ -15,11 +16,11 @@ class Session extends React.Component {
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.value}>
-          {this.props.task} Click me! 
+          <Moment format="DD/MM/YYYY">{this.props.date}</Moment> - {this.props.task} 
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.value}>
           <Card.Body>
-            <p>{this.props.taskObjective}</p>
+            <p>Objective: {this.props.taskObjective}</p>
             <Button variant="outline-secondary">Details ◢</Button>
           </Card.Body>
         </Accordion.Collapse>

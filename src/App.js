@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       userId: undefined,
       live: false,
       liveSession: undefined,

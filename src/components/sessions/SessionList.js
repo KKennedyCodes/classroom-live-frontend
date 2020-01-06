@@ -19,7 +19,7 @@ class Course extends React.Component {
         sessions: response.data,
         // sessions: (response.data).filter(session => session.course.id.includes(this.props.course))
       });
-      // this.displaySessions();
+      this.displaySessions();
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -31,14 +31,23 @@ class Course extends React.Component {
     this.getSessions();
   }
 
-  displaySessions = () => {
+  // displaySessions = () => {
     
-      const sessionList = this.state.sessions.map((created_at, task, task_objective, course, i) => {
-        return <Session date={created_at} task={task} task_objective={task_objective} key={i}/>
-      });
+  //     const sessionList = this.state.sessions.map((created_at, task, task_objective, course, i) => {
+  //       return <Session date={created_at} task={task} task_objective={task_objective} key={i}/>
+  //     });
 
-      return sessionList;
-    }
+  //     return sessionList;
+  //   }
+
+  displaySessions = () => {
+    const sessionList = this.state.sessions.map((session, i) => {
+        // let link="/sessions/"+session.id;
+        // return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
+        return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} value={i}/>
+      });
+    return sessionList;
+  }
     
   render () {
     return (

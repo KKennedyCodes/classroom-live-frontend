@@ -29,6 +29,7 @@ class Course extends React.Component {
         <section>
           <p className="subTitle">Classroom Live Log:</p>
           {/* <SessionList course={this.props.course.id} /> */}
+          <SessionList />
         </section>
       </section>
     )};

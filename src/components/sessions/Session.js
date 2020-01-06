@@ -15,11 +15,11 @@ class Session extends React.Component {
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.value}>
-          {this.props.date} Click me! 
+          {this.props.task} Click me! 
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={this.props.value}>
           <Card.Body>
-            <p>Hello! I'm the body</p>
+            <p>{this.props.taskObjective}</p>
             <Button variant="outline-secondary">Details ◢</Button>
           </Card.Body>
         </Accordion.Collapse>

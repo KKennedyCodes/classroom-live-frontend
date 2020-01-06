@@ -38,7 +38,7 @@ class LiveForm extends React.Component {
             <Form.Label>Task Objective:</Form.Label>
             <Form.Control as="textarea" placeholer="Enter Task Objective" rows="3" />
           </Form.Group>
-          <Button variant="outline-danger" type="submit">
+          <Button variant="outline-danger" type="submit" onClick={this.props.golive}>
             Go Live
           </Button>
         </Form>

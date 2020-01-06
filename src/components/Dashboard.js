@@ -3,6 +3,7 @@ import CourseList from './courses/CourseList.js';
 import Course from './courses/Course.js';
 import LiveForm from './input/LiveForm.js';
 import NewCourseForm from './input/NewCourseForm.js';
+
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, Switch} from "react-router-dom";
@@ -43,7 +44,7 @@ class Dashboard extends React.Component {
               <p>Welcome to Classroom Live, Select a Course to View</p>
             </Route>
             <Route path="/startlive">
-              <LiveForm userCourses={this.state.courses} />
+              <LiveForm userCourses={this.state.courses} golive={this.props.startLive}/>
             </Route>
             <Route exact path="/courses/new">
               <NewCourseForm />
@@ -51,7 +52,6 @@ class Dashboard extends React.Component {
             <Route exact path="/courses/:id">
               <Course course={this.state.course} />
             </Route>
-             
           </Switch>
           </main>
         </section>

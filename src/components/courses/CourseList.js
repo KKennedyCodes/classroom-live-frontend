@@ -10,7 +10,7 @@ class CourseList extends React.Component {
     super(props);
     this.state = {
       courses: [],
-      selected_course: 'Humanology',
+      selected_course: undefined,
       error: undefined,
     };
   }

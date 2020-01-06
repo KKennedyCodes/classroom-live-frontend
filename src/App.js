@@ -30,7 +30,6 @@ class App extends React.Component {
       alertText: 'Successfully Signed In',
       alertVariant: 'success',
     });
-    console.log(this.state);
     this.showAlert();
   }
 

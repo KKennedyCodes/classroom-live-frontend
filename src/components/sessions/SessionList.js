@@ -38,15 +38,6 @@ class Course extends React.Component {
     this.getSessions();
   }
 
-  // displaySessions = () => {
-    
-  //     const sessionList = this.state.sessions.map((created_at, task, task_objective, course, i) => {
-  //       return <Session date={created_at} task={task} task_objective={task_objective} key={i}/>
-  //     });
-
-  //     return sessionList;
-  //   }
-
   displaySessions = () => {
     const sessionList = this.state.userSessions.map((session, i) => {
         return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} id={session.id} value={i} key={i}/>

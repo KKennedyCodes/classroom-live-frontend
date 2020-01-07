@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import SessionList from '../sessions/SessionList.js';
+import StatusForm from '../input/StatusForm.js';
 // import './LiveStudentView.css';
 
 class LiveStudentView extends React.Component {
@@ -32,7 +33,7 @@ class LiveStudentView extends React.Component {
         </section>
         <section>
           <p className="subTitle">Classroom Live Log:</p>
-          
+          <StatusForm />
           <SessionList />
         </section>
       </section>

@@ -4,6 +4,7 @@ import Home from './components/Home.js';
 import ShowAlert from './components/ShowAlert.js';
 import Dashboard from './components/Dashboard.js';
 import LiveTeacher from './components/live/LiveTeacherView.js';
+import LiveStudent from './components/live/LiveStudentView.js';
 import Moment from 'react-moment';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -15,7 +16,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: true,
       userId: 1,
-      live: false,
+      live: true,
       liveSession: undefined,
       alertShow: false,
       alertText: '',
@@ -82,7 +83,8 @@ class App extends React.Component {
   }
 
   live = () => {
-    return <LiveTeacher />
+    // return <LiveTeacher />
+    return <LiveStudent />
   }
 
   render () {

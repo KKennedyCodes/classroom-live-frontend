@@ -21,7 +21,7 @@ class Session extends React.Component {
         <Accordion.Collapse eventKey={this.props.value}>
           <Card.Body>
             <p>Objective: {this.props.taskObjective}</p>
-            <NavLink to={link}><Button variant="outline-secondary" className="sessionButton" onClick={() => this.props.selectCourse({course}>Details ◢</Button></NavLink>
+            <NavLink to={link}><Button variant="outline-secondary" className="sessionButton">Details ◢</Button></NavLink>
           </Card.Body>
         </Accordion.Collapse>
       </Card>

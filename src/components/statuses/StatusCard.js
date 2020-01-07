@@ -6,6 +6,7 @@ class StatusCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selected: undefined
     };
   }
 
@@ -29,10 +30,11 @@ class StatusCard extends React.Component {
       }
     return colorVariant;
   }
-
+  
   render () {
     return (
-      <Card border="light" style={{ width: '9rem' }}>
+      <Card border="light" style={{ width: '9rem' }} >
+        {/* onClick={this.props.selectStudent(this.props.student.id)} */}
       {/* https://i.pravatar.cc/300 */}
       {/* <Card.Header>Header</Card.Header> */}
         <Card.Body>

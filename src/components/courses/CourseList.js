@@ -21,7 +21,6 @@ class CourseList extends React.Component {
     this.setState({
     userCourses: this.state.allCourses.filter(course => course.user_id == this.props.user)
   });
-    console.log(this.state.userCourses);
   this.displayCourses();
 };
 
@@ -54,11 +53,9 @@ class CourseList extends React.Component {
     this.setState({
       selected_course: undefined,
     })
-    console.log(this.state.selected_course);
   }
 
   displayCourses = () => {
-    console.log(this.state.userCourses);
     const courseList = this.state.userCourses.map((course, i) => {
         let link="/courses/"+course.id;
         return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>

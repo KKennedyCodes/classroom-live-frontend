@@ -16,6 +16,7 @@ class Course extends React.Component {
   }
     
   render () {
+    console.log(this.props.course);
     return (
       <section className="body">
         <section className="CourseDetails">
@@ -29,7 +30,7 @@ class Course extends React.Component {
         <section>
           <p className="subTitle">Classroom Live Log:</p>
           {/* <SessionList course={this.props.course.id} /> */}
-          <SessionList />
+          <SessionList course={this.props.course.course.id} />
         </section>
       </section>
     )};

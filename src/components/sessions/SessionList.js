@@ -8,18 +8,28 @@ class Course extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sessions: []
+      allSessions: [],
+      userSessions: [],
     };
   }
+
+  filterSessions () {
+    console.log(this.props);
+    this.setState({
+    userSessions: this.state.allSessions.filter(session => session.course_id === this.props.course)
+  });
+    console.log(this.state.userSessions);
+  this.displaySessions();
+  };
 
   getSessions () {
     axios.get('http://localhost:3000/sessions')
     .then((response) => {
       this.setState({
-        sessions: response.data,
+        allSessions: response.data,
         // sessions: (response.data).filter(session => session.course.id.includes(this.props.course))
       });
-      this.displaySessions();
+      this.filterSessions();
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -40,7 +50,7 @@ class Course extends React.Component {
   //   }
 
   displaySessions = () => {
-    const sessionList = this.state.sessions.map((session, i) => {
+    const sessionList = this.state.userSessions.map((session, i) => {
         // let link="/sessions/"+session.id;
         // return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
         return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} value={i} key={i}/>

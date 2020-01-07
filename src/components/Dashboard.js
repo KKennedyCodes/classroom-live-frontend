@@ -3,7 +3,7 @@ import CourseList from './courses/CourseList.js';
 import Course from './courses/Course.js';
 import LiveForm from './input/LiveForm.js';
 import NewCourseForm from './input/NewCourseForm.js';
-
+import SessionDetails from './sessions/SessionDetails.js';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, Switch} from "react-router-dom";
@@ -52,6 +52,7 @@ class Dashboard extends React.Component {
             <Route exact path="/courses/:id">
               <Course course={this.state.course} />
             </Route>
+            <Route exact path="/sessions/:id" children={<SessionDetails />} />
           </Switch>
           </main>
         </section>

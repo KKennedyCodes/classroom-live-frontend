@@ -14,11 +14,9 @@ class Course extends React.Component {
   }
 
   filterSessions () {
-    console.log(this.props);
     this.setState({
     userSessions: this.state.allSessions.filter(session => session.course_id === this.props.course)
   });
-    console.log(this.state.userSessions);
   this.displaySessions();
   };
 
@@ -51,9 +49,7 @@ class Course extends React.Component {
 
   displaySessions = () => {
     const sessionList = this.state.userSessions.map((session, i) => {
-        // let link="/sessions/"+session.id;
-        // return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
-        return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} value={i} key={i}/>
+        return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} id={session.id} value={i} key={i}/>
       });
     return sessionList;
   }

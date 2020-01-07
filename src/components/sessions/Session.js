@@ -1,7 +1,6 @@
 import React from 'react';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Accordion, Card, Button } from 'react-bootstrap';
+import { NavLink} from "react-router-dom";
 import Moment from 'react-moment';
 // import './Course.css';
 
@@ -13,6 +12,7 @@ class Session extends React.Component {
   }
     
   render () {
+    let link="/sessions/"+this.props.id;
     return (
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={this.props.value}>
@@ -21,7 +21,7 @@ class Session extends React.Component {
         <Accordion.Collapse eventKey={this.props.value}>
           <Card.Body>
             <p>Objective: {this.props.taskObjective}</p>
-            <Button variant="outline-secondary">Details ◢</Button>
+            <NavLink to={link}><Button variant="outline-secondary" className="sessionButton" onClick={() => this.props.selectCourse({course}>Details ◢</Button></NavLink>
           </Card.Body>
         </Accordion.Collapse>
       </Card>

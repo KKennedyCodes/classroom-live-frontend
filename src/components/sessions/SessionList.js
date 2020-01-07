@@ -24,7 +24,6 @@ class Course extends React.Component {
     .catch((error) => {
       this.setState({ error: error.message });
     });
-    console.log(this.state.sessions);
   }
 
   componentDidMount () {
@@ -44,7 +43,7 @@ class Course extends React.Component {
     const sessionList = this.state.sessions.map((session, i) => {
         // let link="/sessions/"+session.id;
         // return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
-        return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} value={i}/>
+        return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} value={i} key={i}/>
       });
     return sessionList;
   }

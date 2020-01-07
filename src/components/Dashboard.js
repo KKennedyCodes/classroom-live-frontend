@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
     return (
       
         <section className="DashboardContainer">
-          <menu><CourseList selectCourse={this.selectCourse} setCourses={this.userCourses}/></menu>
+          <menu><CourseList selectCourse={this.selectCourse} setCourses={this.userCourses} user={this.props.user} /></menu>
           <main>
           {/* {this.state.course_selected ? <Course course={this.state.course}/> : ''} */}
           <Switch>

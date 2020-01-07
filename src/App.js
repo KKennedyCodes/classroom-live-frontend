@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       loggedIn: true,
-      userId: undefined,
+      userId: 1,
       live: false,
       liveSession: undefined,
       alertShow: false,
@@ -72,7 +72,7 @@ class App extends React.Component {
             </header>
             <section>
             {this.state.alertShow ? <ShowAlert variant={this.state.alertVariant} text={this.state.alertText} hideAlert={this.hideAlert}/> : ''}
-              {this.state.loggedIn ? <Dashboard /> : <Home />}
+              {this.state.loggedIn ? <Dashboard user={this.state.userId} /> : <Home />}
             </section>
             <footer>
                   <p>Classroom Live - Created By Katie Kennedy, Ada Developers Academy - Cohort 12</p>

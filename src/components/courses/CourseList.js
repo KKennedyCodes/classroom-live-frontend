@@ -9,21 +9,30 @@ class CourseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      courses: [],
+      allCourses: [],
+      userCourses: [],
       selected_course: undefined,
       error: undefined,
     };
   }
 
+ 
+  filterCourses () {
+    this.setState({
+    userCourses: this.state.allCourses.filter(course => course.user_id == this.props.user)
+  });
+    console.log(this.state.userCourses);
+  this.displayCourses();
+};
+
+
   getCourses () {
     axios.get('http://localhost:3000/courses')
     .then((response) => {
       this.setState({
-        courses: response.data,
+        allCourses: response.data,
       });
-      this.props.setCourses(response.data);
-      this.displayCourses();
-      
+      this.filterCourses();
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -49,7 +58,8 @@ class CourseList extends React.Component {
   }
 
   displayCourses = () => {
-    const courseList = this.state.courses.map((course, i) => {
+    console.log(this.state.userCourses);
+    const courseList = this.state.userCourses.map((course, i) => {
         let link="/courses/"+course.id;
         return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
     });

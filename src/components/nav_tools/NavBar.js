@@ -30,7 +30,7 @@ class NavBar extends React.Component {
         <section className="TopButton"><NavLink to="/dashboard">
         <Button variant="light">Dashboard</Button></NavLink>
         </section>
-        <section className="TopButton"><NavLink to="/startlive">
+        <section className="TopButton"><NavLink to="/sessions/new">
         <Button variant="outline-danger">Go Live</Button></NavLink>
         </section>
         <section className="TopButton"><NavLink to="/">

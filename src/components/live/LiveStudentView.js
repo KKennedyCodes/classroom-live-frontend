@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import Nav from 'react-bootstrap/Nav';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import React from 'react';
 import SessionList from '../sessions/SessionList.js';
 import StatusForm from '../input/StatusForm.js';
 // import './LiveStudentView.css';

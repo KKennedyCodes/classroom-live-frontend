@@ -36,15 +36,15 @@ class Dashboard extends React.Component {
     return (
       
         <section className="DashboardContainer">
-          <menu><CourseList selectCourse={this.selectCourse} setCourses={this.userCourses} user={this.props.user} /></menu>
+          <menu><CourseList selectCourse={this.selectCourse} setCourses={this.userCourses} user={this.props.user}/></menu>
           <main>
           {/* {this.state.course_selected ? <Course course={this.state.course}/> : ''} */}
           <Switch>
             <Route path="/dashboard">
               <p>Welcome to Classroom Live, Select a Course to View</p>
             </Route>
-            <Route path="/startlive">
-              <LiveForm userCourses={this.state.courses} golive={this.props.startLive}/>
+            <Route path="/sessions/new">
+              <LiveForm userCourses={this.state.courses} user={this.props.user} startLive={this.props.startLive}/>
             </Route>
             <Route exact path="/courses/new">
               <NewCourseForm />

@@ -1,6 +1,5 @@
 import React from 'react';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
+import { Tab, Tabs, Button } from 'react-bootstrap';
 import QuestionList from '../QuestionsAnswers/QuestionList.js';
 import StatusList from '../statuses/StatusList.js';
 import StatusKey from '../statuses/StatusKey.js';
@@ -61,6 +60,7 @@ class LiveStudentView extends React.Component {
       <section className='liveContainer'>
         <section className='liveHeader'>History 101 - Live Session Timer End <Stopwatch /></section>
         <section className='liveDetails'>Task - Task Objective</section>
+        <section className="endLive"><Button variant="outline-danger" onClick={this.props.endLive}>End Live Session</Button></section>
         <section className='statusKey'><StatusKey codes={this.state.codes} /></section>
         <section className='liveContent'>{this.liveToolbar()}</section>
         <section className='selected'>Selected Student</section>

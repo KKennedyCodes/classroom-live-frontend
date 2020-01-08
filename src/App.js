@@ -5,7 +5,7 @@ import ShowAlert from './components/ShowAlert.js';
 import Dashboard from './components/Dashboard.js';
 import LiveTeacher from './components/live/LiveTeacherView.js';
 import LiveStudent from './components/live/LiveStudentView.js';
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router} from "react-router-dom";
@@ -16,7 +16,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: true,
       userId: 1,
-      live: true,
+      live: false,
       liveSession: undefined,
       alertShow: false,
       alertText: '',
@@ -69,11 +69,11 @@ class App extends React.Component {
     return (
     <section className="AppContainer">
             <header>
-              <NavBar loggedIn={this.state.loggedIn} login={this.login} logout={this.logout} live={this.startLive}/>
+              <NavBar loggedIn={this.state.loggedIn} login={this.login} logout={this.logout} />
             </header>
             <section>
             {this.state.alertShow ? <ShowAlert variant={this.state.alertVariant} text={this.state.alertText} hideAlert={this.hideAlert}/> : ''}
-              {this.state.loggedIn ? <Dashboard user={this.state.userId} /> : <Home />}
+              {this.state.loggedIn ? <Dashboard user={this.state.userId} startLive={this.startLive}/> : <Home />}
             </section>
             <footer>
                   <p>Classroom Live - Created By Katie Kennedy, Ada Developers Academy - Cohort 12</p>
@@ -83,8 +83,8 @@ class App extends React.Component {
   }
 
   live = () => {
-    // return <LiveTeacher />
-    return <LiveStudent />
+    return <LiveTeacher endLive={this.endLive} />
+    // return <LiveStudent />
   }
 
   render () {

@@ -35,6 +35,10 @@ class Stopwatch extends Component {
     });
   };
 
+  componentDidMount () {
+    this.startTimer();
+  }
+
   render() {
     const { timerTime } = this.state;
     // let centiseconds = ("0" + (Math.floor(timerTime / 10) % 100)).slice(-2);

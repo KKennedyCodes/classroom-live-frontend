@@ -9,58 +9,18 @@ class CourseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allCourses: [],
-      userCourses: [],
-      selected_course: undefined,
-      error: undefined,
     };
   }
 
- 
-  filterCourses () {
-    this.setState({
-    userCourses: this.state.allCourses.filter(course => course.user_id === this.props.user)
-  });
-  this.props.setCourses(this.state.userCourses);
-  this.displayCourses();
-};
-
-
-  getCourses () {
-    axios.get('http://localhost:3000/courses')
-    .then((response) => {
-      this.setState({
-        allCourses: response.data,
-      });
-      this.filterCourses();
-    })
-    .catch((error) => {
-      this.setState({ error: error.message });
-    });
-  }
-
   componentDidMount () {
-    this.getCourses();
-  }
-
-  selectedCourse = (course) => {
-    this.setState({
-      selected_course: course,
-    });
-  }
-
-  clearSelection = () => {
-    console.log(this.state.selected_course);
-    this.setState({
-      selected_course: undefined,
-    })
+    this.displayCourses();
   }
 
   displayCourses = () => {
     
-    const courseList = this.state.userCourses.map((course, i) => {
+    const courseList = this.props.courses.map((course, i) => {
         let link="/courses/"+course.id;
-        return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse({course})}>{course.title}</Button></NavLink>
+        return <NavLink to={link} key={i}><Button variant="light" className="courseButton" key={i} onClick={() => this.props.selectCourse(course)}>{course.title}</Button></NavLink>
     });
     return courseList;
   }

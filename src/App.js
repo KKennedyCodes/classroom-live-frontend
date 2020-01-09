@@ -1,10 +1,7 @@
 import React from 'react';
 import NavBar from './components/nav_tools/NavBar.js';
 import Home from './components/Home.js';
-import ShowAlert from './components/ShowAlert.js';
 import Dashboard from './components/Dashboard.js';
-import LiveTeacher from './components/live/LiveTeacherView.js';
-import LiveStudent from './components/live/LiveStudentView.js';
 // import Moment from 'react-moment';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -16,9 +13,6 @@ class App extends React.Component {
     this.state = {
       loggedIn: true,
       userId: 1,
-      live: false,
-      liveSession: undefined,
-      alertShow: false,
       alertText: '',
       alertVariant: '',
       }
@@ -27,53 +21,30 @@ class App extends React.Component {
   login = () => {
     this.setState({
       loggedIn: true,
-      userId: 1,
+      userId: 1,      
       alertText: 'Successfully Signed In',
       alertVariant: 'success',
     });
-    this.showAlert();
+    // this.showAlert();
   }
 
   logout = () => {
     this.setState({
       loggedIn: false,
-      userId: undefined
+      userId: undefined,
+      alertText: 'Successfully Signed Out',
+      alertVariant: 'warning',
     })
   }
 
-  startLive = () => {
-    this.setState({
-      live: true,
-    })
-  }
-
-  endLive = () => {
-    this.setState({
-      live: false,
-    })
-  }
-
-  showAlert = () => {
-    this.setState({
-      alertShow: true,
-    });
-  }
-
-  hideAlert = () => {
-    this.setState({
-      alertShow: false,
-    });
-  }
-
-  notLive = () => {
+  welcome = () => {
     return (
     <section className="AppContainer">
             <header>
               <NavBar loggedIn={this.state.loggedIn} login={this.login} logout={this.logout} />
             </header>
             <section>
-            {this.state.alertShow ? <ShowAlert variant={this.state.alertVariant} text={this.state.alertText} hideAlert={this.hideAlert}/> : ''}
-              {this.state.loggedIn ? <Dashboard user={this.state.userId} startLive={this.startLive}/> : <Home />}
+              {this.state.loggedIn ? <Dashboard user={this.state.userId} /> : <Home />}
             </section>
             <footer>
                   <p>Classroom Live - Created By Katie Kennedy, Ada Developers Academy - Cohort 12</p>
@@ -82,16 +53,12 @@ class App extends React.Component {
     )
   }
 
-  live = () => {
-    return <LiveTeacher endLive={this.endLive} />
-    // return <LiveStudent />
-  }
+render () {
 
-  render () {
   return (
   <Router>
         <section className="App">
-          {this.state.live ? this.live() : this.notLive()}
+          {this.welcome()}
         </section>
   </Router>
 

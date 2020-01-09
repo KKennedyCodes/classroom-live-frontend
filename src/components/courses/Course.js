@@ -1,37 +1,26 @@
 import React from 'react';
-// import Button from 'react-bootstrap/Button';
-// import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import SessionList from '../sessions/SessionList.js';
+// import SessionList from '../sessions/SessionList.js';
+// import axios from 'axios';
+// import { withRouter } from "react-router-dom";
 import './Course.css';
 
-class Course extends React.Component {
-  constructor(props) {
+class CourseDetails extends React.Component {
+    constructor(props) {
     super(props);
     this.state = {
-      courseSelected: true,
-      students: [1,2,3],
-      sessionIds: [1,2,3,4,5],
     };
   }
-    
-  render () {
-    return (
-      <section className="body">
-        <section className="CourseDetails">
-            <h4>{this.props.course.course.title}</h4>
-            <p>Instructor: {this.props.course.course.user_id}</p>
-            <p>Section: {this.props.course.course.section} <br />Code: {this.props.course.course.code}</p>
-          <section className="courseSpecs">
-            {/* <p>{this.state.students.length} Students    •   {this.state.sessionIds.length} Logs   •   Avg. Wait Time</p> */}
-          </section>
-        </section>
-        <section>
-          <p className="subTitle">Classroom Live Log:</p>
-          {/* <SessionList course={this.props.course.id} /> */}
-          <SessionList course={this.props.course.course.id} />
-        </section>
-      </section>
-    )};
-}
 
-export default Course;
+render () {
+  console.log(this.props);
+  return (
+      <section className="body">
+        <h3>{this.props.course.title}</h3>
+        <p>Section: {this.props.course.section}</p>
+        <p>Teacher ID: {this.props.course.user_id}</p>
+        <p>Code: {this.props.course.section}</p>
+      </section>
+      );
+}
+}
+export default CourseDetails;

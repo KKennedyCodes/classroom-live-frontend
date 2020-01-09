@@ -3,57 +3,158 @@ import CourseList from './courses/CourseList.js';
 import Course from './courses/Course.js';
 import LiveForm from './input/LiveForm.js';
 import NewCourseForm from './input/NewCourseForm.js';
+import SessionList from './sessions/SessionList.js';
 import SessionDetails from './sessions/SessionDetails.js';
+import LiveTeacher from './live/LiveTeacherView.js';
+// import LiveStudent from './components/live/LiveStudentView.js';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, Switch} from "react-router-dom";
+import axios from 'axios'
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      course_selected: false,
+      user: undefined,
+      courses: [],
+      courseSelected: false,
       course: undefined,
-      courses: []
+      sessionsLoaded: false,
+      sessionCount: undefined,
+      sessions: [],
+      live: false,
+      liveSession: undefined,
+      alertShow: false,
+      alertText: '',
+      alertVariant: '',
+      error: '',
     };
   }
+
+  getUserDetails = () => {
+    let link = "http://localhost:3000/users/" + this.props.user;
+    axios.get(link)
+    .then((response) => {
+      this.setState({
+        user: response.data,
+      });
+      console.log(this.state.user);
+      this.filterCourses();
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
+  }
   
+  filterCourses = () => {
+    axios.get("http://localhost:3000/courses/")
+    .then((response) =>{
+      this.setState ({
+        courses: (response.data).filter(course => course.user_id === this.props.user),
+      })
+      console.log(this.state.courses);
+    })
+    .catch((error) => {
+      this.setState({error: error.message });
+    })
+  }
+
   selectCourse = (course) => {
+    console.log(course);
     this.setState({
-      course_selected: true,
+      courseSelected: true,
       course: course,
+    });
+    console.log(this.state.courseSelected);
+    this.filterSessions(course);
+  }
+
+  filterSessions = (course) => {
+    axios.get("http://localhost:3000/sessions/")
+    .then((response) =>{
+      this.setState ({
+        sessions: (response.data).filter(session => session.course_id === course.id),
+      });
+      this.setState ({
+        sessionsLoaded: true,
+      });
+    })
+    .catch((error) => {
+      this.setState({error: error.message });
     })
   }
 
-  userCourses = (courseData) => {
+  startLive = () => {
+    axios.get("http://localhost:3000/sessions/")
+    .then((response) =>{
+      this.setState ({
+        live: true,
+        liveSession: (response.data[response.data.length-1]),
+      });
+    })
+    .catch((error) => {
+      this.setState({error: error.message });
+    })
+  }
+
+  endLive = () => {
     this.setState({
-      courses: courseData,
-    })
+      live: false,
+    });
   }
 
+  showAlert = () => {
+    this.setState({
+      alertShow: true,
+    });
+  }
 
-  render () {
+  hideAlert = () => {
+    this.setState({
+      alertShow: false,
+    });
+  }
+
+  notlive = () => {
     return (
-      
-        <section className="DashboardContainer">
-          <menu><CourseList selectCourse={this.selectCourse} setCourses={this.userCourses} user={this.props.user}/></menu>
-          <main>
-          {/* {this.state.course_selected ? <Course course={this.state.course}/> : ''} */}
-          <Switch>
+      <Switch>
             <Route path="/dashboard">
               <p>Welcome to Classroom Live, Select a Course to View</p>
             </Route>
             <Route path="/sessions/new">
-              <LiveForm userCourses={this.state.courses} user={this.props.user} startLive={this.props.startLive}/>
+              <LiveForm userCourses={this.state.courses} user={this.props.user} startLive={this.startLive}/>
             </Route>
             <Route exact path="/courses/new">
               <NewCourseForm />
             </Route> 
             <Route exact path="/courses/:id">
-              <Course course={this.state.course} />
+              <Course course={this.state.course}  />
+              {/* {this.state.sessionsLoaded ? <SessionList sesions={this.state.sessions}/> : "No Session to Display"} */}
             </Route>
             <Route exact path="/sessions/:id" children={<SessionDetails />} />
           </Switch>
+    )
+  }
+
+  live = () => {
+    return <LiveTeacher endLive={this.endLive} />
+    // return <LiveStudent />
+    // return <Route exact path="session/:id/live" children={<LiveTeacher />} />
+  }
+
+  componentDidMount () {
+    this.getUserDetails();
+  }
+
+  render () {
+    console.log(this.props);
+    return (
+      
+        <section className="DashboardContainer">
+          <menu><CourseList selectCourse={this.selectCourse} courses={this.state.courses}/></menu>
+          <main>
+          {this.state.live ? this.live() : this.notlive()}
           </main>
         </section>
 

@@ -44,17 +44,15 @@ class LiveForm extends React.Component {
       course_id: this.state.course,
     }).then((response) => {
       console.log(response);
+      
     }, (error) => {
       console.log(error);
     });
     this.props.startLive();
-    console.log(this.state);
-    console.log("Reached Submit");
     }
 
 
   render() {
-    console.log(this.state);
     return (
       <Form onSubmit={this.submitHandler}>
           <h4>Start Live Session</h4>

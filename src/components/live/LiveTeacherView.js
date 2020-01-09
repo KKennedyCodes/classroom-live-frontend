@@ -39,17 +39,10 @@ class LiveStudentView extends React.Component {
     });
   }
 
-  // getStatuses () {
-  //   axios.get('http://localhost:3000/codes')
-  //   .then((response) => {
-  //     this.setState({
-  //       codes: response.data,
-  //     });      
-  //   })
-  //   .catch((error) => {
-  //     this.setState({ error: error.message });
-  //   });
-  // }
+  endLiveSession = () => {
+    // end timer, set session live to false
+    this.props.endLive();
+  }
 
   componentDidMount () {
     this.getCodes();
@@ -60,7 +53,7 @@ class LiveStudentView extends React.Component {
       <section className='liveContainer'>
         <section className='liveHeader'>History 101 - Live Session Timer End <Stopwatch /></section>
         <section className='liveDetails'>Task - Task Objective</section>
-        <section className="endLive"><Button variant="outline-danger" onClick={this.props.endLive}>End Live Session</Button></section>
+        <section className="endLive"><Button variant="outline-danger" onClick={this.endLiveSession}>End Live Session</Button></section>
         <section className='statusKey'><StatusKey codes={this.state.codes} /></section>
         <section className='liveContent'>{this.liveToolbar()}</section>
         <section className='selected'>Selected Student</section>

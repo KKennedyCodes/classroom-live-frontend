@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import faker from 'faker';
 
 class NewCourse extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class NewCourse extends React.Component {
   }
 
   generateClassCode = () => {
-    return 
+    this.setState({code: faker.random.alphaNumeric(8)});
+    console.log(this.state.code);
   }
 
   handleChange(event) {
@@ -21,8 +23,9 @@ class NewCourse extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A class was created: ' + this.state.title);
-    // event.preventDefault();
+    this.generateClassCode();
+    event.preventDefault();
+    // alert('A class was created: ' + this.state.title);
   }
 
   render() {

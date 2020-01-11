@@ -23,6 +23,8 @@ class Dashboard extends React.Component {
       sessionsLoaded: false,
       sessionCount: undefined,
       sessions: [],
+      sessionSelected: false,
+      session: undefined,
       live: false,
       liveSession: undefined,
       alertShow: false,
@@ -39,7 +41,6 @@ class Dashboard extends React.Component {
       this.setState({
         user: response.data,
       });
-      console.log(this.state.user);
       this.filterCourses();
     })
     .catch((error) => {
@@ -53,7 +54,6 @@ class Dashboard extends React.Component {
       this.setState ({
         courses: (response.data).filter(course => course.user_id === this.props.user),
       })
-      console.log(this.state.courses);
     })
     .catch((error) => {
       this.setState({error: error.message });
@@ -61,13 +61,18 @@ class Dashboard extends React.Component {
   }
 
   selectCourse = (course) => {
-    console.log(course);
     this.setState({
       courseSelected: true,
       course: course,
     });
-    console.log(this.state.courseSelected);
     this.filterSessions(course);
+  }
+
+  selectSession = (session) => {
+    this.setState({
+      sessionSelected: true,
+      session: session,
+    });
   }
 
   filterSessions = (course) => {
@@ -83,6 +88,7 @@ class Dashboard extends React.Component {
     .catch((error) => {
       this.setState({error: error.message });
     })
+    // console.log(this.state.sessions);
   }
 
   startLive = () => {
@@ -130,9 +136,11 @@ class Dashboard extends React.Component {
             </Route> 
             <Route exact path="/courses/:id">
               <Course course={this.state.course}  />
-              {/* {this.state.sessionsLoaded ? <SessionList sesions={this.state.sessions}/> : "No Session to Display"} */}
+              {this.state.sessionsLoaded ? <SessionList   sessions={this.state.sessions}/> : "No Session to Display"}
             </Route>
-            <Route exact path="/sessions/:id" children={<SessionDetails />} />
+            <Route exact path="/sessions/:id">
+              <SessionDetails session={this.state.session} />
+            </Route>
           </Switch>
     )
   }
@@ -148,7 +156,6 @@ class Dashboard extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     return (
       
         <section className="DashboardContainer">

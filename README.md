@@ -9,6 +9,8 @@ Documentation: https://www.npmjs.com/package/moment
 React Router Dom (Version 5.1.2) - npm i react-router-dom --save
 Resources from React Router Tutorial: https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
 
+Faker npm install faker
+
 axios
 use: import axios from 'axios';
 

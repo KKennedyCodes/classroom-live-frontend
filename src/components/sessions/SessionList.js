@@ -18,8 +18,7 @@ class Course extends React.Component {
   displaySessions = () => {
     console.log(this.props);
     const sessionList = this.props.sessions.map((session, i) => {
-      console.log(session);
-        // return <Session date={session.created_at} task={session.task} taskObjective={session.task_objective} id={session.id} value={i} key={i}/>
+        return <Session date={session.created_at} selectSession={this.props.selectSession} task={session.task} taskObjective={session.task_objective} id={session.id} value={i} key={i}/>
       });
     return sessionList;
   }
@@ -28,7 +27,7 @@ class Course extends React.Component {
     return (
       <section>
         <Accordion defaultActiveKey="0">
-        {/* {this.displaySessions()} */}
+        {this.displaySessions()}
         </Accordion>
       </section>
     )};

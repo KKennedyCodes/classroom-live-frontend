@@ -106,7 +106,11 @@ class StatusForm extends React.Component {
         </fieldset>
           <Form.Group controlId="StatusUserId">
           <Form.Label>User ID:</Form.Label>
-            <Form.Control as="input" name="userId" placeholer="UserID" onChange={this.onChange}/>
+            <Form.Control as="input" name="userId" placeholer="User ID" onChange={this.onChange}/>
+            </Form.Group>
+            <Form.Group controlId="SessionId">
+            <Form.Label>Session ID:</Form.Label>
+            <Form.Control as="input" name="sessionId" placeholer="Session ID" onChange={this.onChange}/>
             </Form.Group>
             <Form.Group controlId="StatusComment">
             <Form.Label>Comment:</Form.Label>

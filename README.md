@@ -19,6 +19,19 @@ Link: https://medium.com/@peterjd42/building-timers-in-react-stopwatch-and-count
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+react router tabs (Version 1.3.2) - npm i react-router-tabs
+Link: https://www.npmjs.com/package/react-router-tabs
+
+react-bootstrap-table-next (Version 3.3.3) - npm install react-bootstrap-table-next --save
+https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
+
+react-bootstrap-table2-toolkit (Versions 2.1.1) - npm install react-bootstrap-table2-toolkit --save
+https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/toolkits-getting-started.html
+
+react-bootstrap-table2-paginator (Version 2.1.0) npm install react-bootstrap-table2-paginator --save
+Link: https://www.npmjs.com/package/react-bootstrap-table2-paginator
+
 ## Available Scripts
 
 In the project directory, you can run:

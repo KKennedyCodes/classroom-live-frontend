@@ -6,61 +6,47 @@ class StatusForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      statusStart: Date.now(),
-      statusEnd: undefined,
-      studentComment: '',
-      teacherComment: '',
-      userId: undefined,
-      sessionId: undefined,
-      codeId: 1,
-      // publicToggle: "off",
-      // public: false,
+      username: '',
+      comment: '',
+      status: '',
+      session_id: this.props.session || '',
     };
   }
 
   onChange = (data) => {
     this.setState({ [data.target.name]: data.target.value });
-    // if (this.state.publicToggle === 'on') {
-    //   console.log("If statement reached");
-    //   this.setState({
-    //     public: true,
-    //   });}
+  }
+
+  clearForm = () => {
+    this.setState({
+      username: '',
+      comment: '',
+      status: '',
+      session_id: '',
+    });
   }
 
   onSubmit = (data) =>{
+    let link = "https://classroomlive-basic-api.herokuapp.com/posts";
+    // let link= "http://localhost:3000/posts";
     data.preventDefault();
+    data.target.reset();
     axios({
       method: 'post',
-      url: 'http://localhost:3000/statuses',
+      url: link,
       data: {
-        status_start: undefined,
-        status_end: undefined,
-        student_comment: this.state.studentComment,
-        teacher_comment: this.state.teacherComment,
-        user_id: this.state.userId,
-        session_id: this.props.sessionId,
-        code_id: this.state.code_id
+        username: this.state.username,
+        comment: this.state.comment,
+        status: this.state.status,
+        session_id: this.state.session_id,
       }
     }).then((response) => {
       console.log(response);
+      
     }, (error) =>{
       console.log(error);
     });
     }
-    // axios.post('http://localhost:3000/statuses', {
-    //   status_start: undefined,
-    //   status_end: undefined,
-    //   student_comment: this.state.studentComment,
-    //   teacher_comment: this.state.teacherComment,
-    //   user_id: this.state.userId,
-    //   session_id: this.props.sessionId,
-    //   code_id: this.state.code_id,
-    // }).then((response) => {
-    //   console.log(response);
-    // }, (error) => {
-    //   console.log(error);
-    // });
-    // }
 
   render() {
     return (
@@ -68,53 +54,53 @@ class StatusForm extends React.Component {
         <fieldset>
           <Form.Group>
             <Form.Label as="legend">
-              Update Status:
+              Status:
             </Form.Label>
             <Form.Check
               type="radio"
               label="Stuck, Can't Make Progress"
-              name="codeId"
+              name="status"
               id="stuck"
-              value="2"
+              value="stuck"
               onChange={this.onChange}
             />
             <Form.Check
               type="radio"
               label="Question, but Still Working"
-              name="codeId"
+              name="status"
               id="question"
-              value="3"
+              value="question"
               onChange={this.onChange}
             />
             <Form.Check
               type="radio"
               label="Good, Working Fine"
-              name="codeId"
+              name="status"
               id="working"
-              value="4"
+              value="working"
               onChange={this.onChange}
             />
             <Form.Check
               type="radio"
               label="Done, Task Completed"
-              name="codeId"
+              name="status"
               id="done"
-              value="5"
+              value="done"
               onChange={this.onChange}
             />
           </Form.Group>
         </fieldset>
           <Form.Group controlId="StatusUserId">
-          <Form.Label>User ID:</Form.Label>
-            <Form.Control as="input" name="userId" placeholer="User ID" onChange={this.onChange}/>
+          <Form.Label>Username: </Form.Label>
+            <Form.Control as="input" name="username" placeholer="Enter Username" onChange={this.onChange}/>
             </Form.Group>
             <Form.Group controlId="SessionId">
             <Form.Label>Session ID:</Form.Label>
-            <Form.Control as="input" name="sessionId" placeholer="Session ID" onChange={this.onChange}/>
+            <Form.Control as="input" name="session_id" value={this.state.session_id} placeholer="Enter Session ID" onChange={this.onChange}/>
             </Form.Group>
             <Form.Group controlId="StatusComment">
             <Form.Label>Comment:</Form.Label>
-            <Form.Control as="textarea" name="studentComment" placeholer="Response Text Here" rows="3" onChange={this.onChange}/>
+            <Form.Control as="textarea" name="comment" placeholer="Comment Text Here" rows="3" onChange={this.onChange}/>
             </Form.Group>
           {/* <Form.Check 
             type="switch"

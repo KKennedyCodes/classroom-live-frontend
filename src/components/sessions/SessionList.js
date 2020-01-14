@@ -7,6 +7,7 @@ import { Table } from 'react-bootstrap';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import axios from 'axios'
+import moment from 'moment'
 // import axios from 'axios';
 import './Session.css';
 
@@ -15,13 +16,20 @@ class Course extends React.Component {
     super(props);
     this.state = {
       sessions: [],
+      time: undefined,
     };
   }
 
 
   getSessionList = () => {
-    let link = "http://localhost:3000/sessions/";
-    axios.get(link)
+    let link = "https://classroomlive-basic-api.herokuapp.com/sessions";
+    // let link = "http://localhost:3000/sessions"
+    const config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      }
+    };
+    axios.get(link, config)
     .then((response) => {
       this.setState({
         sessions: response.data,
@@ -34,7 +42,14 @@ class Course extends React.Component {
   }
 
   componentDidMount = () => {
+    this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
+    console.log(this.state.time);
     this.getSessionList();
+  }
+
+  componentWillUnmount() {
+    console.log("unmounted");
+    clearInterval(this.interval);
   }
   
   // redirect = (id) => {
@@ -42,10 +57,13 @@ class Course extends React.Component {
   //   console.log(link);
   //   return <Redirect to={link} />
   // }
- 
+  dateFormat(value, row, index) {
+    return moment(value).format('DD/MM/YYYY');
+ }
+
   tableSetup = () => {
     const pagination = paginationFactory({
-      page: 2,
+      page: 1,
     });
     const selectRow = {
       mode: 'radio', // single row selection
@@ -63,20 +81,23 @@ class Course extends React.Component {
       text: 'ID',
       sort: true
     }, {
-      dataField: 'course_id',
-      text: 'Course ID',
-      sort: true
-    }, {
       dataField: 'task',
       text: 'Task',
       sort: true
     }, {
-      dataField: 'task_objective',
+      dataField: 'objective',
       text: 'Objective',
       sort: true
     }, {
-      dataField: 'created_at',
+      dataField: 'date',
       text: 'Date',
+      // formatter: (cell) => {
+      //   let dateObj = cell;
+      //   if (typeof cell !== 'object') {
+      //     dateObj = new Date(cell);
+      //   }
+      //   return `${('0' + (dateObj.getUTCMonth() + 1)).slice(-2)}/${('0' + dateObj.getUTCDate()).slice(-2)}/${dateObj.getUTCFullYear()}`;
+      // },
       sort: true
     }];
     return (

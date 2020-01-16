@@ -2,7 +2,7 @@ import React from 'react';
 import StatusForm from '../input/StatusForm';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 import axios from 'axios'
 import './Session.css';
 class SessionDetails extends React.Component {
@@ -17,14 +17,15 @@ class SessionDetails extends React.Component {
 
   componentDidMount = () => {
     this.getStatusList();
-    this.startSocket();
+    // this.startSocket();
   }
 
-  startSocket = () => {
-    const { endpoint } = this.state.endpoint;
-    const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
-  }
+  // startSocket = () => {
+  //   const { endpoint } = this.state.endpoint;
+  //   // const socket = socketIOClient(endpoint);
+  //   var socket = socketIOClient.connect('http://localhost:3000/');
+  //   socket.on("FromAPI", data => this.setState({ response: data }));
+  // }
 
   getStatusList = () => {
     let link = "https://classroomlive-basic-api.herokuapp.com/posts";
@@ -41,20 +42,7 @@ class SessionDetails extends React.Component {
     });
   }
 
-  tableSetup = () => {
-    // const pagination = paginationFactory({
-    //   page: 2,
-    // });
-    // const selectRow = {
-    //   mode: 'radio', // single row selection
-    //   style: { background: 'red' },
-    //   clickToSelect: true,
-    //   onSelect: (row, isSelect, rowIndex, e) => {
-    //     this.props.selectSession(row);
-    //     // this.redirect(row.id);
-    //   }
-    // };
-    
+  tableSetup = () => {    
     const columns = [{
       dataField: 'session_id',
       text: 'Session ID',

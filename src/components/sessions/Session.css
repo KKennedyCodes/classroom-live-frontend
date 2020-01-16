@@ -1,3 +1,12 @@
 .courseSession {
   margin: 10px;
 }
+
+hr {
+  width: 100%;
+}
+
+.note{
+  font-style: italic;
+  color: gray;
+}

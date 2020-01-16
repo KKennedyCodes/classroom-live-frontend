@@ -4,14 +4,16 @@ import Session from './Session.js';
 import { Redirect } from "react-router-dom";
 import BootstrapTable from 'react-bootstrap-table-next';
 import { Table } from 'react-bootstrap';
-import ToolkitProvider from 'react-bootstrap-table2-toolkit';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import axios from 'axios'
 import moment from 'moment'
+import './Session.css'
+
 // import axios from 'axios';
 import './Session.css';
 
-class Course extends React.Component {
+class SessionList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +64,7 @@ class Course extends React.Component {
  }
 
   tableSetup = () => {
+    const { SearchBar } = Search;
     const pagination = paginationFactory({
       page: 1,
     });
@@ -100,16 +103,25 @@ class Course extends React.Component {
       // },
       sort: true
     }];
+
     return (
       <ToolkitProvider
       keyField="id"
       data={ this.state.sessions }
       columns={ columns }
+      search
 >
   {
-    props =>
+    props => (
+      <div>
+        <h4>Search Sessions:</h4>
+      <SearchBar { ...props.searchProps } />
+      <hr color="red"/>
+      <p className="note">Choose Row and Click Session Details for More<br />Click Column Headers to Sort</p>
       <BootstrapTable pagination={ pagination } selectRow={ selectRow } { ...props.baseProps } />
-  }
+      </div>
+    )
+    }
 </ToolkitProvider>)
     // ) <BootstrapTable keyField='id' data={ this.state.sessions } columns={ columns } />
   }
@@ -140,7 +152,7 @@ class Course extends React.Component {
     )};
 }
 
-export default Course;
+export default SessionList;
 
 // class Course extends React.Component {
 //   constructor(props) {

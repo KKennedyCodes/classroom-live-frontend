@@ -32,6 +32,9 @@ https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/toolkits-get
 react-bootstrap-table2-paginator (Version 2.1.0) npm install react-bootstrap-table2-paginator --save
 Link: https://www.npmjs.com/package/react-bootstrap-table2-paginator
 
+
+react-confirm-alert (Version 2.4.1) - npm install react-confirm-alert --save
+Link: https://www.npmjs.com/package/react-confirm-alert
 ## Available Scripts
 
 In the project directory, you can run:

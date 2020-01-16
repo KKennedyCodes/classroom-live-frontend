@@ -26,6 +26,14 @@ class StatusForm extends React.Component {
     });
   }
 
+  showHeading = () => {
+    return (
+      <section>
+      <h4>Post Status</h4>
+      <hr color="red"/>
+      </section>
+    )
+  }
   onSubmit = (data) =>{
     let link = "https://classroomlive-basic-api.herokuapp.com/posts";
     // let link= "http://localhost:3000/posts";
@@ -50,9 +58,15 @@ class StatusForm extends React.Component {
 
   render() {
     return (
+      <section>
+      {this.props.header ? this.showHeading() : ""}
       <Form className="studentInput" onSubmit={this.onSubmit}>
-        <fieldset>
-          <Form.Group>
+        <Form.Group controlId="StatusUserId">
+          <Form.Label>Username: </Form.Label>
+          <Form.Control as="input" name="username" placeholer="Enter Username" onChange={this.onChange}/>
+        </Form.Group>
+        <fieldset className="RadioOptions">
+          <Form.Group >
             <Form.Label as="legend">
               Status:
             </Form.Label>
@@ -90,30 +104,22 @@ class StatusForm extends React.Component {
             />
           </Form.Group>
         </fieldset>
-          <Form.Group controlId="StatusUserId">
-          <Form.Label>Username: </Form.Label>
-            <Form.Control as="input" name="username" placeholer="Enter Username" onChange={this.onChange}/>
-            </Form.Group>
+          
             <Form.Group controlId="SessionId">
             <Form.Label>Session ID:</Form.Label>
             <Form.Control as="input" name="session_id" value={this.state.session_id} placeholer="Enter Session ID" onChange={this.onChange}/>
             </Form.Group>
-            <Form.Group controlId="StatusComment">
-            <Form.Label>Comment:</Form.Label>
-            <Form.Control as="textarea" name="comment" placeholer="Comment Text Here" rows="3" onChange={this.onChange}/>
+            <Form.Group controlId="StatusComment" className="comment">
+              <Form.Label>Comment:</Form.Label>
+              <Form.Control as="textarea" name="comment" placeholer="Comment Text Here" rows="3" onChange={this.onChange}/>
             </Form.Group>
-          {/* <Form.Check 
-            type="switch"
-            label="Push to Public FAQ"
-            id="disabled-custom-switch"
-            onChange={this.onChange}
-            name="publicToggle"
-          /> */}
-          <Button variant="light" type="submit">
-            Submit
+            <hr className="comment"/>
+          <Button variant="outline-danger" type="submit">
+            Post Status
           </Button>
 
         </Form>
+        </section>
     )};
 }
 

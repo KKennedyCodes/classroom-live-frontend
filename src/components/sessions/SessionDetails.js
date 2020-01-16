@@ -2,16 +2,23 @@ import React from 'react';
 import StatusForm from '../input/StatusForm';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
-// import socketIOClient from "socket.io-client";
+import { Card, Accordion, Nav, Button } from 'react-bootstrap';
+import socketIOClient from "socket.io-client";
 import axios from 'axios'
 import './Session.css';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 class SessionDetails extends React.Component {
     constructor(props) {
+      // this.response = true;
+
     super(props);
     this.state = {
       posts: [],
+      selectedSessions: [],
+      showPopup: false,
       response: true,
-      endpoint: "http://127.0.0.1:4001",
+      endpoint: "http://127.0.0.1:4001", 
     };
   }
 
@@ -41,11 +48,86 @@ class SessionDetails extends React.Component {
       this.setState({ error: error.message });
     });
   }
+  statusAccordion = () => {
+    return (
+      <Accordion>
+        <Card>
+          <Accordion.Toggle as={Card.Header} eventKey="0">
+            Post Status
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              <StatusForm header={false} session={this.props.session.id} />
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+    );
+  }
+  submit = () => {
+    confirmAlert({
+      title: 'Delete Post?',
+      message: 'This action cannot be undone.',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: () => this.deletePost()
+        },
+        {
+          label: 'Cancel',
+          onClick: () => this.setState({selectedSession: undefined, showPopup: false})
+        }
+      ]
+    });
+  };
 
-  tableSetup = () => {    
+  deletePost = () => {
+    let link = "https://classroomlive-basic-api.herokuapp.com/posts/" + this.state.selectedSession.id;
+    axios.delete(link)
+    .then((response) => {
+      this.setState({
+        selectedSession: undefined,
+        showPopup: false,
+      });
+      console.log("Post Deleted");
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+      console.log(error.message);
+
+    });
+  }
+
+  // cellColor = (row, index) => {
+  //   let classes = "grey";
+  //   if (row.status === "done") {
+  //     classes = "blue";
+  //   } else if (row.status === "working") {
+  //     classes = "green";
+  //   } else if (row.status === "stuck") {
+  //     classes = "red";
+  //   } else if (row.status === "question") {
+  //     classes = "yellow";
+  //   }
+  //   return {color: classes};
+  // }
+
+  tableSetup = () => {
+    const selectRow = {
+      mode: 'radio', // single row selection
+      style: { background: 'red' },
+      clickToSelect: true,
+      onSelect: (row, isSelect, rowIndex, e) => {
+        this.setState({
+          selectedSession: row,
+          showPopup: true,
+        });
+        this.submit();
+      }
+    };    
     const columns = [{
-      dataField: 'session_id',
-      text: 'Session ID',
+      dataField: 'id',
+      text: 'Status ID',
       sort: true
     }, {
       dataField: 'username',
@@ -69,7 +151,6 @@ class SessionDetails extends React.Component {
     }, {
       dataField: 'status',
       text: 'Status',
-      // return { backgroundColor: colorDict[cell] };
       sort: true
     }];
     return (
@@ -81,7 +162,7 @@ class SessionDetails extends React.Component {
         
   {
     props =>
-      <BootstrapTable { ...props.baseProps } />
+      <BootstrapTable selectRow={ selectRow } { ...props.baseProps } />
   }
 </ToolkitProvider>)
   }
@@ -98,7 +179,7 @@ render () {
         <p>Date: {this.props.session.created_at}</p>
         <p>Course ID: {this.props.session.course_id}</p>
         <p>Session ID: {this.props.session.id}</p>
-        <StatusForm session={this.props.session.id} />
+        {this.statusAccordion()}
         {response
               ? <p>
                 The socket response is: {response}
@@ -106,6 +187,7 @@ render () {
               : <p>Loading Socket Response...</p>}
         {this.tableSetup()}
         {/* <StatusForm sessionId={this.props.session.id}/> */}
+        
       </section>
       );
 }

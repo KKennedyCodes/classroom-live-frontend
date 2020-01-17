@@ -4,7 +4,6 @@ import QuestionForm from '../input/QuestionForm';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
 import { Card, Accordion } from 'react-bootstrap';
-import socketIOClient from "socket.io-client";
 import axios from 'axios'
 import './Session.css';
 import { confirmAlert } from 'react-confirm-alert'; // Import
@@ -18,27 +17,26 @@ class SessionDetails extends React.Component {
       session: undefined,
       showPopup: false,
       response: true,
-      endpoint: "http://127.0.0.1:4001", 
+      endpoint: "http://127.0.0.1:4001",
+      postCreated: 0, 
     };
   }
 
+  postMade = () => {
+    let number = this.state.postCreated + 1;
+    this.setState({
+      postCreated: number,
+    });
+  }
+  
   componentDidMount = () => {
     this.getSessionDetails();
-    // this.startSocket();
   }
 
-  // startSocket = () => {
-  //   const { endpoint } = this.state.endpoint;
-  //   // const socket = socketIOClient(endpoint);
-  //   var socket = socketIOClient.connect('http://localhost:3000/');
-  //   socket.on("FromAPI", data => this.setState({ response: data }));
-  // }
   getSessionDetails = () => {
     let sessionsLink = "https://classroomlive-basic-api.herokuapp.com/sessions"
     axios.get(sessionsLink)
     .then((response) => {
-      console.log(this.state.sessionId);
-      console.log(response.data);
       this.setState({
         session: (response.data).filter(session => session.id === this.state.sessionId),
       });
@@ -50,8 +48,6 @@ class SessionDetails extends React.Component {
   }
 
   showSessionDetails = () => {
-    console.log('session',this.state.session);
-    // If this is truthy, then do this... if not, do something else like "loading"
     if (this.state.session) {
       return (
       <section>
@@ -60,13 +56,11 @@ class SessionDetails extends React.Component {
         <p>Date: {this.state.session[0].date}</p>
         <p>Session ID: {this.state.session[0].id}</p>
       </section> )
-      
     }
     this.getStatusList();
   }
   getStatusList = () => {
     let postLink = "https://classroomlive-basic-api.herokuapp.com/posts";
-    // let link = "http://localhost:3000/posts";
     axios.get(postLink)
     .then((response) => {
       this.setState({
@@ -81,7 +75,6 @@ class SessionDetails extends React.Component {
   }
   getQuestionList = () => {
     let questionLink = "https://classroomlive-basic-api.herokuapp.com/questions";
-    // let link = "http://localhost:3000/posts";
     axios.get(questionLink)
     .then((response) => {
       this.setState({
@@ -102,7 +95,7 @@ class SessionDetails extends React.Component {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              <StatusForm header={false} session={this.state.sessionId} />
+              <StatusForm header={false} session={this.state.sessionId} post={this.postMade} />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -112,7 +105,7 @@ class SessionDetails extends React.Component {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="1">
             <Card.Body>
-              <QuestionForm header={false} session={this.state.sessionId} />
+              <QuestionForm header={false} session={this.state.sessionId} post={this.postMade} />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -144,7 +137,6 @@ class SessionDetails extends React.Component {
         selectedSession: undefined,
         showPopup: false,
       });
-      console.log("Post Deleted");
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -228,14 +220,7 @@ render () {
         {this.showSessionDetails()}
         {this.statusAccordion()}
         <br />
-        {/* {response
-              ? <p>
-                The socket response is: {response}
-              </p>
-              : <p>Loading Socket Response...</p>} */}
         {this.tableSetup()}
-        {/* <StatusForm sessionId={this.props.session.id}/> */}
-        
       </section>
       );
 }

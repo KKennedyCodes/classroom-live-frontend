@@ -1,6 +1,6 @@
-/* .App {
-
-} */
+.App {
+  font-family: 'Raleway', sans-serif;
+}
 
 .AppContainer {
   display: grid;

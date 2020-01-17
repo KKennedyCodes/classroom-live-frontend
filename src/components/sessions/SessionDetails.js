@@ -3,7 +3,8 @@ import StatusForm from '../input/StatusForm';
 import QuestionForm from '../input/QuestionForm';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
-import { Card, Accordion } from 'react-bootstrap';
+import { Card, Accordion,AccordionToggle } from 'react-bootstrap';
+import {useAccordionToggle} from 'react-bootstrap/AccordionToggle';
 import axios from 'axios'
 import './Session.css';
 import { confirmAlert } from 'react-confirm-alert'; // Import
@@ -23,14 +24,13 @@ class SessionDetails extends React.Component {
   }
 
   postMade = () => {
-    let number = this.state.postCreated + 1;
-    this.setState({
-      postCreated: number,
-    });
+    this.getStatusList();
+    // useAccordionToggle(0, console.log);
   }
   
   componentDidMount = () => {
     this.getSessionDetails();
+    this.getStatusList();
   }
 
   getSessionDetails = () => {
@@ -57,7 +57,6 @@ class SessionDetails extends React.Component {
         <p>Session ID: {this.state.session[0].id}</p>
       </section> )
     }
-    this.getStatusList();
   }
   getStatusList = () => {
     let postLink = "https://classroomlive-basic-api.herokuapp.com/posts";
@@ -112,6 +111,7 @@ class SessionDetails extends React.Component {
       </Accordion>
     );
   }
+
   submit = () => {
     confirmAlert({
       title: 'Delete Post?',
@@ -137,11 +137,11 @@ class SessionDetails extends React.Component {
         selectedSession: undefined,
         showPopup: false,
       });
+      this.postMade();
     })
     .catch((error) => {
       this.setState({ error: error.message });
       console.log(error.message);
-
     });
   }
 

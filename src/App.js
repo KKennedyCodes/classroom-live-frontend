@@ -72,9 +72,10 @@ class App extends Component {
           <Route exact path="/sessions">
           <SessionList selectSession={this.selectSession} />
           </Route> 
-          <Route exact path="/sessions/:id">
+          <Route path="/sessions/:id" component={SessionDetails} />
+          {/* <Route path="/sessions/:id">
             <SessionDetails session={this.state.session} />
-            </Route>
+            </Route> */}
         </div>
       </section>
       </Router>

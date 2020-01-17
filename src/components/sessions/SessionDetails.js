@@ -2,7 +2,7 @@ import React from 'react';
 import StatusForm from '../input/StatusForm';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
-import { Card, Accordion, Nav, Button } from 'react-bootstrap';
+import { Card, Accordion } from 'react-bootstrap';
 import socketIOClient from "socket.io-client";
 import axios from 'axios'
 import './Session.css';
@@ -10,12 +10,11 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 class SessionDetails extends React.Component {
     constructor(props) {
-      // this.response = true;
-
     super(props);
     this.state = {
       posts: [],
-      selectedSessions: [],
+      sessionId: Number(this.props.match.params.id),
+      session: undefined,
       showPopup: false,
       response: true,
       endpoint: "http://127.0.0.1:4001", 
@@ -23,7 +22,7 @@ class SessionDetails extends React.Component {
   }
 
   componentDidMount = () => {
-    this.getStatusList();
+    this.getSessionDetails();
     // this.startSocket();
   }
 
@@ -33,14 +32,42 @@ class SessionDetails extends React.Component {
   //   var socket = socketIOClient.connect('http://localhost:3000/');
   //   socket.on("FromAPI", data => this.setState({ response: data }));
   // }
+  getSessionDetails = () => {
+    let sessionsLink = "https://classroomlive-basic-api.herokuapp.com/sessions"
+    axios.get(sessionsLink)
+    .then((response) => {
+      console.log(this.state.sessionId);
+      console.log(response.data);
+      this.setState({
+        session: (response.data).filter(session => session.id === this.state.sessionId),
+      });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
+    this.showSessionDetails();
+  }
 
+  showSessionDetails = () => {
+    console.log(this.state.session);
+    this.getStatusList();
+    return (
+      <section>
+        {/* <h3>{this.state.session.task}</h3>
+        <p>Objective: {this.state.session.objective}</p>
+        <p>Date: {this.state.session.date}</p>
+        <p>Session ID: {this.state.session.id}</p> */}
+      </section>
+    )
+    
+  }
   getStatusList = () => {
-    let link = "https://classroomlive-basic-api.herokuapp.com/posts";
+    let postLink = "https://classroomlive-basic-api.herokuapp.com/posts";
     // let link = "http://localhost:3000/posts";
-    axios.get(link)
+    axios.get(postLink)
     .then((response) => {
       this.setState({
-        posts: (response.data).filter(post => post.session_id === this.props.session.id)
+        posts: (response.data).filter(post => post.session_id === this.state.sessionId),
       });
       this.tableSetup();
     })
@@ -57,7 +84,7 @@ class SessionDetails extends React.Component {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              <StatusForm header={false} session={this.props.session.id} />
+              <StatusForm header={false} session={this.state.sessionId} />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -168,23 +195,15 @@ class SessionDetails extends React.Component {
   }
 
 render () {
-  const { response } = this.state;
-  // console.log(this.props);
-  console.log(this.state.response);
-  // console.log(response);
   return (
       <section className="body">
-        <h3>{this.props.session.task}</h3>
-        <p>Objective: {this.props.session.task_objective}</p>
-        <p>Date: {this.props.session.created_at}</p>
-        <p>Course ID: {this.props.session.course_id}</p>
-        <p>Session ID: {this.props.session.id}</p>
+        {this.showSessionDetails()}
         {this.statusAccordion()}
-        {response
+        {/* {response
               ? <p>
                 The socket response is: {response}
               </p>
-              : <p>Loading Socket Response...</p>}
+              : <p>Loading Socket Response...</p>} */}
         {this.tableSetup()}
         {/* <StatusForm sessionId={this.props.session.id}/> */}
         

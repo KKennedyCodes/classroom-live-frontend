@@ -1,9 +1,6 @@
 import React from 'react';
-import Accordion from 'react-bootstrap/Accordion';
-import Session from './Session.js';
 import { Redirect } from "react-router-dom";
 import BootstrapTable from 'react-bootstrap-table-next';
-import { Table } from 'react-bootstrap';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import axios from 'axios'
@@ -19,6 +16,8 @@ class SessionList extends React.Component {
     this.state = {
       sessions: [],
       time: undefined,
+      redirect: false,
+      redirctTo: undefined
     };
   }
 
@@ -73,7 +72,15 @@ class SessionList extends React.Component {
       style: { background: 'red' },
       clickToSelect: true,
       onSelect: (row, isSelect, rowIndex, e) => {
-        this.props.selectSession(row);
+        console.log(row.id);
+        console.log(rowIndex);
+        this.setState({
+          redirectTo: row.id,
+          redirect: true,
+        });
+        // browserHistory.push(`/${rowIndex}`);
+        // "/sessions/" +  session.id
+        // this.props.selectSession(row);
         // this.redirect(row.id);
       }
     };
@@ -142,6 +149,12 @@ class SessionList extends React.Component {
   // }
     
   render () {
+    if (this.state.redirect) {
+      let link = "/sessions/" + this.state.redirectTo
+      console.log(link);
+      console.log(this.state.redirectTo);
+      return <Redirect push to={link} />;
+    }
     return (
       <section>
 

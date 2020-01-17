@@ -1,8 +1,4 @@
 import React from 'react';
-import { NavLink, Route, Switch} from "react-router-dom";
-import { Tab, Tabs, Button } from 'react-bootstrap';
-import axios from 'axios';
-import StatusForm from './input/StatusForm.js'
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 

@@ -5,6 +5,7 @@ import Home from './components/Home.js';
 import { NavLink, Route } from "react-router-dom";
 import StatusForm from './components/input/StatusForm.js'
 import LiveForm from './components/input/LiveForm.js'
+import QuestionForm from './components/input/QuestionForm.js'
 import SessionList from './components/sessions/SessionList.js'
 import SessionDetails from './components/sessions/SessionDetails.js'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
@@ -59,6 +60,7 @@ class App extends Component {
           <li><NavLink to="/home">Welcome</NavLink></li>
           <li><NavLink to="/session/new">Create Session</NavLink></li>
           <li><NavLink to="/status/new">Post Status</NavLink></li>
+          <li><NavLink to="/question/new">Add Question</NavLink></li>
           <li><NavLink to="/sessions">Session List</NavLink></li>
           {this.state.sessionSelected ? <li><NavLink to={this.state.link}>Session Details</NavLink></li> : ""}
         </ul>
@@ -68,6 +70,9 @@ class App extends Component {
           <Route path="/session/new" component={LiveForm}/>
           <Route path="/status/new">
             <StatusForm header={true} />
+            </Route>
+            <Route path="/question/new">
+              <QuestionForm header={true} />
             </Route>
           <Route exact path="/sessions">
           <SessionList selectSession={this.selectSession} />

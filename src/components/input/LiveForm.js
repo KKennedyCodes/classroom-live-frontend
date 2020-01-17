@@ -47,14 +47,14 @@ class LiveForm extends React.Component {
       <section>
         <h4>Create New Session</h4> 
         <hr color="red"/>
-        <Form onSubmit={this.submitHandler} className="largeInput center">
+        <Form onSubmit={this.submitHandler} className="largeInput">
           
           <Form.Group controlId="LiveForm">
-            <Form.Label>Task:</Form.Label>
+            <Form.Label>Task: </Form.Label><br />
             <Form.Control type="task" className="largeInput" name="task" placeholder="Enter Task" onChange={this.onChange}/>
           </Form.Group>
           <Form.Group controlId="TaskObjective">
-            <Form.Label>Task Objective:</Form.Label>
+            <Form.Label>Task Objective:</Form.Label><br />
             <Form.Control as="textarea" className="largeInput" name="objective" placeholer="Enter Task Objective" rows="3" onChange={this.onChange}/>
           </Form.Group>
           {/* <hr className="comment"/> */}

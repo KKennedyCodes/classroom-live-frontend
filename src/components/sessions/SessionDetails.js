@@ -1,5 +1,6 @@
 import React from 'react';
 import StatusForm from '../input/StatusForm';
+import QuestionForm from '../input/QuestionForm';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
 import { Card, Accordion } from 'react-bootstrap';
@@ -49,17 +50,19 @@ class SessionDetails extends React.Component {
   }
 
   showSessionDetails = () => {
-    console.log(this.state.session);
-    this.getStatusList();
-    return (
+    console.log('session',this.state.session);
+    // If this is truthy, then do this... if not, do something else like "loading"
+    if (this.state.session) {
+      return (
       <section>
-        {/* <h3>{this.state.session.task}</h3>
-        <p>Objective: {this.state.session.objective}</p>
-        <p>Date: {this.state.session.date}</p>
-        <p>Session ID: {this.state.session.id}</p> */}
-      </section>
-    )
-    
+        <h3>{this.state.session[0].task}</h3>
+        <p>Objective: {this.state.session[0].objective}</p>
+        <p>Date: {this.state.session[0].date}</p>
+        <p>Session ID: {this.state.session[0].id}</p>
+      </section> )
+      
+    }
+    this.getStatusList();
   }
   getStatusList = () => {
     let postLink = "https://classroomlive-basic-api.herokuapp.com/posts";
@@ -74,17 +77,42 @@ class SessionDetails extends React.Component {
     .catch((error) => {
       this.setState({ error: error.message });
     });
+    // this.getQuestionList();
+  }
+  getQuestionList = () => {
+    let questionLink = "https://classroomlive-basic-api.herokuapp.com/questions";
+    // let link = "http://localhost:3000/posts";
+    axios.get(questionLink)
+    .then((response) => {
+      this.setState({
+        posts: (response.data).filter(question => question.session_id === this.state.sessionId),
+      });
+      // this.tableSetup();
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
   }
   statusAccordion = () => {
     return (
       <Accordion>
         <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="0">
-            Post Status
+          <Accordion.Toggle className="accordianHeader" as={Card.Header} eventKey="0">
+            Post Status ▼
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
               <StatusForm header={false} session={this.state.sessionId} />
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+        <Card>
+          <Accordion.Toggle className="accordianHeader" as={Card.Header} eventKey="1">
+            Post Question ▼
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="1">
+            <Card.Body>
+              <QuestionForm header={false} session={this.state.sessionId} />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -154,19 +182,19 @@ class SessionDetails extends React.Component {
     };    
     const columns = [{
       dataField: 'id',
-      text: 'Status ID',
+      text: 'Status ID ↕',
       sort: true
     }, {
       dataField: 'username',
-      text: 'Username',
+      text: 'Username ↕',
       sort: true
     }, {
       dataField: 'comment',
-      text: 'Comment',
+      text: 'Comment ↕',
       sort: true
     }, {
       dataField: 'created_at',
-      text: 'Date',
+      text: 'Date ↕',
       formatter: (cell) => {
         let dateObj = cell;
         if (typeof cell !== 'object') {
@@ -177,7 +205,7 @@ class SessionDetails extends React.Component {
       sort: true
     }, {
       dataField: 'status',
-      text: 'Status',
+      text: 'Status ↕',
       sort: true
     }];
     return (
@@ -199,6 +227,7 @@ render () {
       <section className="body">
         {this.showSessionDetails()}
         {this.statusAccordion()}
+        <br />
         {/* {response
               ? <p>
                 The socket response is: {response}

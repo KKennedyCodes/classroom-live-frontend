@@ -59,8 +59,6 @@ class App extends Component {
         <ul className="header">
           <li><NavLink to="/home">Welcome</NavLink></li>
           <li><NavLink to="/session/new">Create Session</NavLink></li>
-          <li><NavLink to="/status/new">Post Status</NavLink></li>
-          <li><NavLink to="/question/new">Add Question</NavLink></li>
           <li><NavLink to="/sessions">Session List</NavLink></li>
           {this.state.sessionSelected ? <li><NavLink to={this.state.link}>Session Details</NavLink></li> : ""}
         </ul>
@@ -68,12 +66,6 @@ class App extends Component {
           <Route exact path="/" component={Home}/>
           <Route path="/home" component={Home}/>
           <Route path="/session/new" component={LiveForm}/>
-          <Route path="/status/new">
-            <StatusForm header={true} />
-            </Route>
-            <Route path="/question/new">
-              <QuestionForm header={true} />
-            </Route>
           <Route exact path="/sessions">
           <SessionList selectSession={this.selectSession} />
           </Route> 

@@ -10,3 +10,9 @@ hr {
   font-style: italic;
   color: gray;
 }
+
+.accordianHeader{
+  /* color: white; */
+  /* background-color: red; */
+  font-weight: bold;
+}

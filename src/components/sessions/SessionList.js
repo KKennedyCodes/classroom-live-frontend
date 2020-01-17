@@ -88,19 +88,19 @@ class SessionList extends React.Component {
     
     const columns = [{
       dataField: 'id',
-      text: 'ID',
+      text: 'ID ↕',
       sort: true
     }, {
       dataField: 'task',
-      text: 'Task',
+      text: 'Task ↕',
       sort: true
     }, {
       dataField: 'objective',
-      text: 'Objective',
+      text: 'Objective ↕',
       sort: true
     }, {
       dataField: 'date',
-      text: 'Date',
+      text: 'Date ↕',
       // formatter: (cell) => {
       //   let dateObj = cell;
       //   if (typeof cell !== 'object') {

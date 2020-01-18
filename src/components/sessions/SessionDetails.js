@@ -58,6 +58,15 @@ class SessionDetails extends React.Component {
       </section> )
     }
   }
+
+  showSessionSpecs = () => {
+    let stuckCount = (this.state.posts.filter(post => post.status === "stuck")).length;
+    let questionCount = (this.state.posts.filter(post => post.status === "question")).length;
+    let workingCount = (this.state.posts.filter(post => post.status === "working")).length;
+    let doneCount = (this.state.posts.filter(post => post.status === "done")).length;
+    return <p>🛑 {stuckCount} - ⚠️ {questionCount} - ✅ {workingCount} - 🔵 {doneCount}</p>;
+  }
+
   getStatusList = () => {
     let postLink = "https://classroomlive-basic-api.herokuapp.com/posts";
     axios.get(postLink)
@@ -70,6 +79,7 @@ class SessionDetails extends React.Component {
     .catch((error) => {
       this.setState({ error: error.message });
     });
+    this.showSessionSpecs();
     // this.getQuestionList();
   }
   getQuestionList = () => {
@@ -198,6 +208,21 @@ class SessionDetails extends React.Component {
     }, {
       dataField: 'status',
       text: 'Status ↕',
+      formatter: (cell) => {
+        let status = cell;
+        if (status === "done") {
+          return "🔵";
+        }
+        else if (status === "working") {
+          return "✅";
+        }
+        else if (status === "stuck") {
+          return "🛑";
+        }
+        else if (status === "question") {
+          return "⚠️";
+        }
+      },
       sort: true
     }];
     return (
@@ -218,6 +243,7 @@ render () {
   return (
       <section className="body">
         {this.showSessionDetails()}
+        {this.showSessionSpecs()}
         {this.statusAccordion()}
         <br />
         {this.tableSetup()}

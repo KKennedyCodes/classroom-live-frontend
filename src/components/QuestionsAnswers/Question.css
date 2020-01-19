@@ -1,3 +1,8 @@
 .courseQuestion {
   margin: 10px;
+  text-align: left;
+}
+
+.QuestionCard {
+  text-align: left;
 }

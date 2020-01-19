@@ -16,3 +16,17 @@ hr {
   /* background-color: red; */
   font-weight: bold;
 }
+Button {
+  background-color: none;
+}
+
+#infoButton {
+  color: black;
+  background-color: lightgrey;
+  border-radius: 75%;
+  border-color: lightgrey;
+}
+
+.react-confirm-alert-body {
+  width: 650px;
+}

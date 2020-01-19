@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, Accordion} from 'react-bootstrap';
 import AnswerList from './AnswerList.js';
-// import './Course.css';
+import './Question.css';
 
 class Question extends React.Component {
   constructor(props) {
@@ -12,12 +12,12 @@ class Question extends React.Component {
     
   render () {
     return (
-    <Card>
+    <Card className = "QuestionCard">
       <Accordion.Toggle as={Card.Header} variant="link" eventKey={this.props.value}>
-       {this.props.question}
+       Q:  {this.props.question.question_text}
       </Accordion.Toggle>
     <Accordion.Collapse eventKey={this.props.value}>
-      <Card.Body><AnswerList /></Card.Body>
+      <Card.Body>"Answers"</Card.Body>
     </Accordion.Collapse>
   </Card>
     )};

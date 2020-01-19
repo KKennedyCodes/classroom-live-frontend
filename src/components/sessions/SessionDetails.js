@@ -1,22 +1,30 @@
 import React from 'react';
 import StatusForm from '../input/StatusForm';
 import QuestionForm from '../input/QuestionForm';
+import QuestionList from '../QuestionsAnswers/QuestionList.js';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
-import { Card, Accordion,AccordionToggle } from 'react-bootstrap';
-import {useAccordionToggle} from 'react-bootstrap/AccordionToggle';
+import { Button, Card, Accordion, Tabs, Tab } from 'react-bootstrap';
 import axios from 'axios'
 import './Session.css';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import moment from 'moment';
 class SessionDetails extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
+      dataLoaded: false,
       posts: [],
+      queue: [],
+      working: [],
+      done: [],
+      questions: [],
+      answers: [],
       sessionId: Number(this.props.match.params.id),
       session: undefined,
       showPopup: false,
+      showInfo: false,
       response: true,
       endpoint: "http://127.0.0.1:4001",
       postCreated: 0, 
@@ -25,12 +33,15 @@ class SessionDetails extends React.Component {
 
   postMade = () => {
     this.getStatusList();
+    this.getQuestionList();
     // useAccordionToggle(0, console.log);
   }
   
   componentDidMount = () => {
     this.getSessionDetails();
     this.getStatusList();
+    this.getQuestionList();
+    this.tabView();
   }
 
   getSessionDetails = () => {
@@ -45,6 +56,21 @@ class SessionDetails extends React.Component {
       this.setState({ error: error.message });
     });
     this.showSessionDetails();
+  }
+
+  getQuestionList = () => {
+    let questionLink = "https://classroomlive-basic-api.herokuapp.com/questions";
+    axios.get(questionLink)
+    .then((response) => {
+      this.setState({
+        questions: (response.data).filter(question => question.session_id === this.state.sessionId),
+      });
+      console.log(this.state.questions);
+      this.displayQuesitons();
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
   }
 
   showSessionDetails = () => {
@@ -64,36 +90,30 @@ class SessionDetails extends React.Component {
     let questionCount = (this.state.posts.filter(post => post.status === "question")).length;
     let workingCount = (this.state.posts.filter(post => post.status === "working")).length;
     let doneCount = (this.state.posts.filter(post => post.status === "done")).length;
-    return <p>🛑 {stuckCount} - ⚠️ {questionCount} - ✅ {workingCount} - 🔵 {doneCount}</p>;
+    return <section><p>🛑 {stuckCount} - ⚠️ {questionCount} - ✅ {workingCount} - 🔵 {doneCount} <Button onClick={this.info} id="infoButton">i</Button></p></section>;
   }
 
   getStatusList = () => {
     let postLink = "https://classroomlive-basic-api.herokuapp.com/posts";
     axios.get(postLink)
     .then((response) => {
+      let rawPost = (response.data).filter(post => post.session_id === this.state.sessionId)
+      // let rawPost2 = (response.data).filter(post => post.session_id === this.state.sessionId)
+      // let rawPost3 = (response.data).filter(post => post.session_id === this.state.sessionId)
       this.setState({
         posts: (response.data).filter(post => post.session_id === this.state.sessionId),
-      });
-      this.tableSetup();
-    })
-    .catch((error) => {
-      this.setState({ error: error.message });
-    });
-    this.showSessionSpecs();
-    // this.getQuestionList();
-  }
-  getQuestionList = () => {
-    let questionLink = "https://classroomlive-basic-api.herokuapp.com/questions";
-    axios.get(questionLink)
-    .then((response) => {
-      this.setState({
-        posts: (response.data).filter(question => question.session_id === this.state.sessionId),
+        queue: rawPost.filter(post => post.status === "stuck" || post.status === "question"),
+        working: rawPost.filter(post => post.status === "working"),
+        done: rawPost.filter(post => post.status === "done"),
+        dataLoaded: true,
       });
       // this.tableSetup();
     })
     .catch((error) => {
       this.setState({ error: error.message });
     });
+    // this.showSessionSpecs();
+    // this.getQuestionList();
   }
   statusAccordion = () => {
     return (
@@ -124,8 +144,7 @@ class SessionDetails extends React.Component {
 
   submit = () => {
     confirmAlert({
-      title: 'Delete Post?',
-      message: 'This action cannot be undone.',
+      message: 'Delete Post?',
       buttons: [
         {
           label: 'Delete',
@@ -139,13 +158,27 @@ class SessionDetails extends React.Component {
     });
   };
 
+  info = () => {
+    confirmAlert({
+      // title: 'Legend',
+      // message: 'Legend: ',
+      message: 'Stuck: 🛑,\nQuestion: ⚠️,\nWorking: ✅,\nDone: 🔵',
+      buttons: [
+        {
+          label: 'Close',
+          onClick: () => this.setState({showPopup: false})
+        }
+      ]
+    });
+  };
+
   deletePost = () => {
     let link = "https://classroomlive-basic-api.herokuapp.com/posts/" + this.state.selectedSession.id;
     axios.delete(link)
     .then((response) => {
       this.setState({
         selectedSession: undefined,
-        showPopup: false,
+        showInfo: false,
       });
       this.postMade();
     })
@@ -155,21 +188,7 @@ class SessionDetails extends React.Component {
     });
   }
 
-  // cellColor = (row, index) => {
-  //   let classes = "grey";
-  //   if (row.status === "done") {
-  //     classes = "blue";
-  //   } else if (row.status === "working") {
-  //     classes = "green";
-  //   } else if (row.status === "stuck") {
-  //     classes = "red";
-  //   } else if (row.status === "question") {
-  //     classes = "yellow";
-  //   }
-  //   return {color: classes};
-  // }
-
-  tableSetup = () => {
+  tableSetup = (filterChoice) => {
     const selectRow = {
       mode: 'radio', // single row selection
       style: { background: 'red' },
@@ -183,10 +202,6 @@ class SessionDetails extends React.Component {
       }
     };    
     const columns = [{
-      dataField: 'id',
-      text: 'Status ID ↕',
-      sort: true
-    }, {
       dataField: 'username',
       text: 'Username ↕',
       sort: true
@@ -224,20 +239,53 @@ class SessionDetails extends React.Component {
         }
       },
       sort: true
-    }];
+    }, {
+      dataField: 'created_at',
+      text: 'Wait Time (Minutes) ↕',
+      formatter: (cell) => {
+        let dateObj = cell;
+        let now = moment(new Date());
+        if (typeof cell !== 'object') {
+          dateObj = moment (new Date(dateObj));
+        }
+        let timeDiff = (moment.duration(now.diff(dateObj)))
+        return `${timeDiff.days()} days ${timeDiff.hours()} hours ${timeDiff.minutes()} minutes`
+      },
+      sort: true
+    }, 
+  ];
     return (
       <ToolkitProvider
       keyField="id"
-      data={ this.state.posts }
+      data={ filterChoice }
       columns={ columns }
       >
         
   {
     props =>
-      <BootstrapTable selectRow={ selectRow } { ...props.baseProps } />
+      <BootstrapTable selectRow={ selectRow } sort={ { dataField: 'created_at', order: 'asc' } } { ...props.baseProps } />
   }
 </ToolkitProvider>)
   }
+
+tabView = () => {
+  return (
+    <Tabs defaultActiveKey="queue" id="uncontrolled-tab-example">
+    <Tab eventKey="queue" title="Queue">
+      {this.tableSetup(this.state.queue)}
+    </Tab>
+    <Tab eventKey="working" title="Working">
+    {this.tableSetup(this.state.working)}
+    </Tab>
+    <Tab eventKey="done" title="Done">
+    {this.tableSetup(this.state.done)}
+    </Tab>
+    <Tab eventKey="questions" title="Q & A">
+      <QuestionList session={this.state.sessionId} questions={this.state.questions} />
+    </Tab>
+  </Tabs>
+  )
+}
 
 render () {
   return (
@@ -245,8 +293,11 @@ render () {
         {this.showSessionDetails()}
         {this.showSessionSpecs()}
         {this.statusAccordion()}
+        {/* {this.state.dataLoaded ? this.tabView : ""} */}
+        {this.tabView()}
+
         <br />
-        {this.tableSetup()}
+        
       </section>
       );
 }

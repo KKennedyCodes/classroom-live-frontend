@@ -6,7 +6,7 @@ class StatusForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: '',
+      question_text: '',
       session_id: this.props.session || '',
     };
   }
@@ -17,7 +17,7 @@ class StatusForm extends React.Component {
 
   clearForm = () => {
     this.setState({
-      question: '',
+      question_text: '',
       session_id: '',
     });
   }
@@ -39,8 +39,7 @@ class StatusForm extends React.Component {
       method: 'post',
       url: link,
       data: {
-        question: this.state.question,
-        answers: [],
+        question_text: this.state.question_text,
         session_id: this.state.session_id,
       }
     }).then((response) => {
@@ -63,7 +62,7 @@ class StatusForm extends React.Component {
         </Form.Group>
         <Form.Group controlId="StatusComment" className="comment">
           <Form.Label>Question:</Form.Label>
-          <Form.Control as="textarea" name="comment" placeholer="Comment Text Here" rows="3" onChange={this.onChange}/>
+          <Form.Control as="textarea" name="question_text" placeholer="Comment Text Here" rows="3" onChange={this.onChange}/>
         </Form.Group>
         <hr className="comment"/>
         <Button variant="outline-danger" type="submit">

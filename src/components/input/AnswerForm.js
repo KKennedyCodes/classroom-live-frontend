@@ -8,6 +8,7 @@ class AnswerForm extends React.Component {
     this.state = {
       answer_text: '',
       question_id: this.props.question,
+      session_id: this.props.session,
     };
   }
 
@@ -18,7 +19,6 @@ class AnswerForm extends React.Component {
   clearForm = () => {
     this.setState({
       answer_text: '',
-      question_id: '',
     });
   }
 
@@ -41,11 +41,10 @@ class AnswerForm extends React.Component {
       data: {
         answer_text: this.state.answer_text,
         question_id: this.state.question_id,
+        session_id: this.state.session_id
       }
     }).then((response) => {
-      console.log(response);
       this.props.post();
-      
     }, (error) =>{
       console.log(error);
     });
@@ -58,7 +57,7 @@ class AnswerForm extends React.Component {
       <Form className="answerInput" onSubmit={this.onSubmit}>
         <Form.Group controlId="AnswerText" className="comment">
           <Form.Label>Answer:</Form.Label>
-          <Form.Control as="textarea" name="answer_text" placeholer="Answer Text Here" rows="3" onChange={this.onChange}/>
+          <Form.Control as="textarea" id={this.props.id} name="answer_text" placeholer="Answer Text Here" rows="3" onChange={this.onChange}/>
         </Form.Group>
         <hr className="comment"/>
         <Button variant="outline-danger" type="submit">

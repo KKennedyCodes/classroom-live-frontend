@@ -88,7 +88,6 @@ class Dashboard extends React.Component {
     .catch((error) => {
       this.setState({error: error.message });
     })
-    // console.log(this.state.sessions);
   }
 
   startLive = () => {

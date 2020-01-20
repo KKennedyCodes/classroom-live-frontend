@@ -11,8 +11,7 @@ class AnswerList extends React.Component {
 
   render () {
     return (
-      <ListGroup.Item>{this.props.answer}</ListGroup.Item>
-
+      <ListGroup.Item>A:  {this.props.answer_text}</ListGroup.Item>
     )};
 }
 

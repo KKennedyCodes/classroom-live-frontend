@@ -18,7 +18,9 @@ class Question extends React.Component {
        Q:  {this.props.question.question_text}
       </Accordion.Toggle>
     <Accordion.Collapse eventKey={this.props.value}>
-      <Card.Body><AnswerList answers={this.props.answerSet} question={this.props.question.id} /></Card.Body>
+      <Card.Body>
+        <AnswerList answers={this.props.answerSet} question={this.props.question.id} post={this.props.post} session={this.props.session} />
+        </Card.Body>
     </Accordion.Collapse>
   </Card>
     )};

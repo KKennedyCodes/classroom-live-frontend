@@ -11,11 +11,17 @@ class AnswerList extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    // this.getQuestionList();
+    this.displayAnswers();
+  }
+
 displayAnswers = () => {
   let answerList = undefined;
   if (this.props.answers.length > 0) {
     answerList = this.props.answers.map((answer, i) => {
-      return <Answer value={i} className="courseAnswer" answer={answer}/>
+      // return <li>{answer.answer_text}</li>
+      return <Answer value={i} key={i} className="courseAnswer" answer_text={answer.answer_text}/>
     }); }
     else {
       answerList = "Not Yet Answered";
@@ -31,7 +37,7 @@ displayAnswers = () => {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              <AnswerForm header={false} question={this.props.question} post={this.postMade} />
+              <AnswerForm header={false} id={this.props.id} question={this.props.question} session={this.props.session} post={this.props.post} />
             </Card.Body>
           </Accordion.Collapse>
         </Card>

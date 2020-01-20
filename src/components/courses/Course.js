@@ -12,7 +12,6 @@ class CourseDetails extends React.Component {
   }
 
 render () {
-  console.log(this.props);
   return (
       <section className="body">
         <h3>{this.props.course.title}</h3>

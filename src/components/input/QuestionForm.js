@@ -56,11 +56,11 @@ class StatusForm extends React.Component {
       <section>
       {this.props.header ? this.showHeading() : ""}
       <Form className="studentInput" onSubmit={this.onSubmit}>
-        <Form.Group controlId="SessionId">
+        <Form.Group controlId="QuestionSessionId">
           <Form.Label>Session ID:</Form.Label>
           <Form.Control as="input" name="session_id" value={this.state.session_id} placeholer="Enter Session ID" onChange={this.onChange}/>
         </Form.Group>
-        <Form.Group controlId="StatusComment" className="comment">
+        <Form.Group controlId="QuestionText" className="comment">
           <Form.Label>Question:</Form.Label>
           <Form.Control as="textarea" name="question_text" placeholer="Comment Text Here" rows="3" onChange={this.onChange}/>
         </Form.Group>

@@ -21,7 +21,7 @@ class QuestionList extends React.Component {
 displayQuestions = () => {
     const questionList = this.props.questions.map((question, i) => {
       let answerSet = this.props.answers.filter(answer => answer.question_id === question.id)
-      return <Question key={i} value={i} className="courseQuestion" question={question} answerSet={answerSet} />
+      return <Question key={i} value={i} className="courseQuestion" question={question} answerSet={answerSet} post={this.props.post} session={this.props.session} />
     });
   return questionList;
 }

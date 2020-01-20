@@ -21,8 +21,6 @@ class App extends Component {
     };
   }
   selectSession = (session) => {
-    console.log("select session reached");
-    console.log(session);
     this.setState({
       sessionSelected: true,
       session: session,

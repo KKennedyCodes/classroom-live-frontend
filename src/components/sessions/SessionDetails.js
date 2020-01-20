@@ -34,6 +34,7 @@ class SessionDetails extends React.Component {
   postMade = () => {
     this.getStatusList();
     this.getQuestionList();
+    this.getAnswerList();
   }
   
   componentDidMount = () => {
@@ -252,7 +253,7 @@ class SessionDetails extends React.Component {
       },
       sort: true
     }, {
-      dataField: 'created_at',
+      dataField: 'updated_at',
       text: 'Wait Time (Minutes) ↕',
       formatter: (cell) => {
         let dateObj = cell;
@@ -275,7 +276,7 @@ class SessionDetails extends React.Component {
         
   {
     props =>
-      <BootstrapTable selectRow={ selectRow } sort={ { dataField: 'created_at', order: 'asc' } } { ...props.baseProps } />
+      <BootstrapTable selectRow={ selectRow } sort={ { dataField: 'updated_at', order: 'asc' } } { ...props.baseProps } />
   }
 </ToolkitProvider>)
   }
@@ -293,7 +294,7 @@ tabView = () => {
     {this.tableSetup(this.state.done)}
     </Tab>
     <Tab eventKey="questions" title="Q & A">
-      <QuestionList session={this.state.sessionId} questions={this.state.questions} answers={this.state.answers} />
+      <QuestionList session={this.state.sessionId} questions={this.state.questions} answers={this.state.answers} post={this.postMade} />
     </Tab>
   </Tabs>
   )

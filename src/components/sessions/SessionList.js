@@ -44,20 +44,13 @@ class SessionList extends React.Component {
 
   componentDidMount = () => {
     this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
-    console.log(this.state.time);
     this.getSessionList();
   }
 
   componentWillUnmount() {
-    console.log("unmounted");
     clearInterval(this.interval);
   }
   
-  // redirect = (id) => {
-  //   let link = '/sessions/' + id;
-  //   console.log(link);
-  //   return <Redirect to={link} />
-  // }
   dateFormat(value, row, index) {
     return moment(value).format('DD/MM/YYYY');
  }
@@ -72,8 +65,6 @@ class SessionList extends React.Component {
       style: { background: 'red' },
       clickToSelect: true,
       onSelect: (row, isSelect, rowIndex, e) => {
-        console.log(row.id);
-        console.log(rowIndex);
         this.setState({
           redirectTo: row.id,
           redirect: true,
@@ -130,29 +121,11 @@ class SessionList extends React.Component {
     )
     }
 </ToolkitProvider>)
-    // ) <BootstrapTable keyField='id' data={ this.state.sessions } columns={ columns } />
-  }
+    }
 
-  // displaySessions = () => {
-  //   console.log(this.state.sessions);
-  //   const sessionList = this.state.sessions.map((session, i) => {
-  //       return  <tr>
-  //                 <td>{session.id}</td>
-  //                 <td>{session.course_id}</td>
-  //                 <td>{session.task}</td>
-  //                 <td>{session.task_objective}</td>
-  //                 <td>{session.created_at}</td>
-                  
-  //               </tr>
-  //     });
-  //   return sessionList;
-  // }
-    
   render () {
     if (this.state.redirect) {
       let link = "/sessions/" + this.state.redirectTo
-      console.log(link);
-      console.log(this.state.redirectTo);
       return <Redirect push to={link} />;
     }
     return (
@@ -166,34 +139,3 @@ class SessionList extends React.Component {
 }
 
 export default SessionList;
-
-// class Course extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//     };
-//   }
-
-//   componentDidMount = () => {
-//     this.displaySessions();
-//   }
- 
-//   displaySessions = () => {
-//     console.log(this.props);
-//     const sessionList = this.props.sessions.map((session, i) => {
-//         return <Session date={session.created_at} selectSession={this.props.selectSession} task={session.task} taskObjective={session.task_objective} id={session.id} value={i} key={i}/>
-//       });
-//     return sessionList;
-//   }
-    
-//   render () {
-//     return (
-//       <section>
-//         <Accordion defaultActiveKey="0">
-//         {this.displaySessions()}
-//         </Accordion>
-//       </section>
-//     )};
-// }
-
-// export default Course;

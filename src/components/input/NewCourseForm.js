@@ -15,7 +15,6 @@ class NewCourse extends React.Component {
 
   generateClassCode = () => {
     this.setState({code: faker.random.alphaNumeric(8)});
-    console.log(this.state.code);
   }
 
   handleChange(event) {

@@ -21,7 +21,6 @@ class LiveForm extends React.Component {
   }
 
   submitHandler = (data) =>{
-    console.log(this.state);
     let link = "https://classroomlive-basic-api.herokuapp.com/sessions";
     data.preventDefault();
     data.target.reset();

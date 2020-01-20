@@ -302,7 +302,7 @@ tabView = () => {
 
 render () {
   return (
-      <section className="body">
+      <section className="SessionDetailsBody body">
         {this.showSessionDetails()}
         {this.showSessionSpecs()}
         {this.statusAccordion()}

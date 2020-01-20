@@ -8,15 +8,18 @@
   width: 100vw;
   grid-template-columns: 20% auto;
 }
-.HomeContainer {
+.HomeContent {
   background-image: url(../images/handup.jpg);
   width: 100vw;
   height: 100vh;
   margin: 0;
   text-align: center;
-      background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 50px;
+  left: 0;
 }
 .HomeContent {
   background-color: transparent;
@@ -33,5 +36,23 @@ main {
   
 }
 img {
-  margin-bottom: -45px;
+  margin-bottom: -50px;  
+  border-radius: 30px;
+  /* border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px; */
+}
+
+h4 {
+  margin-left: 5%;
+  color: red;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+  /* background-color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  width: 90%; */
 }

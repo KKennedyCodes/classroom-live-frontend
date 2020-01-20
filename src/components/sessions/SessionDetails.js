@@ -34,13 +34,13 @@ class SessionDetails extends React.Component {
   postMade = () => {
     this.getStatusList();
     this.getQuestionList();
-    // useAccordionToggle(0, console.log);
   }
   
   componentDidMount = () => {
     this.getSessionDetails();
     this.getStatusList();
     this.getQuestionList();
+    this.getAnswerList();    
     this.tabView();
   }
 
@@ -65,8 +65,20 @@ class SessionDetails extends React.Component {
       this.setState({
         questions: (response.data).filter(question => question.session_id === this.state.sessionId),
       });
-      console.log(this.state.questions);
       this.displayQuesitons();
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
+  }
+
+  getAnswerList = () => {
+    let questionLink = "https://classroomlive-basic-api.herokuapp.com/answers";
+    axios.get(questionLink)
+    .then((response) => {
+      this.setState({
+        answers: (response.data).filter(answer => answer.session_id === this.state.sessionId),
+      });
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -281,7 +293,7 @@ tabView = () => {
     {this.tableSetup(this.state.done)}
     </Tab>
     <Tab eventKey="questions" title="Q & A">
-      <QuestionList session={this.state.sessionId} questions={this.state.questions} />
+      <QuestionList session={this.state.sessionId} questions={this.state.questions} answers={this.state.answers} />
     </Tab>
   </Tabs>
   )

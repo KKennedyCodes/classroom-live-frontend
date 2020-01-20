@@ -1,7 +1,6 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Question from './Question.js';
-import axios from 'axios';
 // import './Session.css';
 
 class QuestionList extends React.Component {
@@ -21,7 +20,8 @@ class QuestionList extends React.Component {
 
 displayQuestions = () => {
     const questionList = this.props.questions.map((question, i) => {
-      return <Question key={i} value={i} className="courseQuestion" question={question} />
+      let answerSet = this.props.answers.filter(answer => answer.question_id === question.id)
+      return <Question key={i} value={i} className="courseQuestion" question={question} answerSet={answerSet} />
     });
   return questionList;
 }

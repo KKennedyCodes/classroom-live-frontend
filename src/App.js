@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router} from "react-router-dom";
 import Home from './components/Home.js';
 import { NavLink, Route } from "react-router-dom";
-import StatusForm from './components/input/StatusForm.js'
 import LiveForm from './components/input/LiveForm.js'
-import QuestionForm from './components/input/QuestionForm.js'
 import SessionList from './components/sessions/SessionList.js'
 import SessionDetails from './components/sessions/SessionDetails.js'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';

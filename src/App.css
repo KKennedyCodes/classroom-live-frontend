@@ -19,6 +19,9 @@ header {
   border-bottom: solid 2px black;
 }
 
+img {
+  border-radius: 100px;
+}
 
 
 footer {
@@ -28,13 +31,11 @@ footer {
   border-top: solid 2px black;
 }
 
-body {
-  /* background-color: lightsalmon; */
-  /* padding: 20px; */
-  background: url(/public/handup.jpg);
-  margin: 0;
-}
-h1, h2, p, ul, li {
+/* body {
+} */
+h1, h2, h4, p, ul, li {
+  color: red;
+  font-weight: bold;
   font-family: 'Raleway', sans-serif;
 }
 ul.header li {
@@ -54,7 +55,7 @@ ul.header li a {
   display: inline-block;
 }
 .content {
-  background-color: #FFF;
+  background-color: transparent;
   padding: 20px;
 }
 .content h2 {

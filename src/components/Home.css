@@ -9,9 +9,17 @@
   grid-template-columns: 20% auto;
 }
 .HomeContainer {
-  background: url(/public/handup.jpg);
+  background-image: url(../images/handup.jpg);
   width: 100vw;
+  height: 100vh;
+  margin: 0;
   text-align: center;
+      background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.HomeContent {
+  background-color: transparent;
 }
 menu {
   grid-column: 1;
@@ -23,4 +31,7 @@ main {
   border-left: solid 2px black;
   overflow: scroll;
   
+}
+img {
+  margin-bottom: -45px;
 }

@@ -9,7 +9,7 @@ class Home extends React.Component {
 
             <img src="https://live.staticflickr.com/65535/49296000551_fe05df3618_b.jpg" className="homeTitle" alt="ClassroomLogo" /><script async src="//embedr.flickr.com/assets/client-code.js" charSet="utf-8"></script>
             <p>A Classroom Management Tools for Teachers Who Want to Facilitate Effecting Work Time and Digitally Track Student Need</p>
-    
+            <img src="https://github.com/KKennedyCodes/classroom-live-frontend/blob/master/src/images/handup.jpg" alt="man raising hand"/>
       
     </section>
   );

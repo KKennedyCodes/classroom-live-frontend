@@ -29,8 +29,9 @@ footer {
 }
 
 body {
-  /* background-color: #FFCC00; */
+  /* background-color: lightsalmon; */
   /* padding: 20px; */
+  background: url(/public/handup.jpg);
   margin: 0;
 }
 h1, h2, p, ul, li {

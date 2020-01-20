@@ -9,6 +9,7 @@
   grid-template-columns: 20% auto;
 }
 .HomeContainer {
+  background: url(/public/handup.jpg);
   width: 100vw;
   text-align: center;
 }
@@ -21,4 +22,5 @@ main {
   grid-column: 2;
   border-left: solid 2px black;
   overflow: scroll;
+  
 }

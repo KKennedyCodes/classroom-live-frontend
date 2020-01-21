@@ -4,3 +4,6 @@
 .collapse-content .fa.fa-share-alt:hover {
   color: #0d47a1 !important;
 }
+.active {
+  background-color: white;
+}

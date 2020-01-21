@@ -283,26 +283,28 @@ class SessionDetails extends React.Component {
 
 tabView = () => {
   return (
-    <Tabs defaultActiveKey="queue" id="uncontrolled-tab-example">
-    <Tab eventKey="queue" title="Queue">
+    <section className="TabMenu">
+    <Tabs defaultActiveKey="queue" id="uncontrolled-tab-example" className="Tab">
+    <Tab eventKey="queue" title="Queue" className="Tab">
       {this.tableSetup(this.state.queue)}
     </Tab>
-    <Tab eventKey="working" title="Working">
+    <Tab eventKey="working" title="Working" className="Tab">
     {this.tableSetup(this.state.working)}
     </Tab>
-    <Tab eventKey="done" title="Done">
+    <Tab eventKey="done" title="Done" className="Tab">
     {this.tableSetup(this.state.done)}
     </Tab>
-    <Tab eventKey="questions" title="Q & A">
+    <Tab eventKey="questions" title="Q & A" className="Tab">
       <QuestionList session={this.state.sessionId} questions={this.state.questions} answers={this.state.answers} post={this.postMade} />
     </Tab>
   </Tabs>
+  </section>
   )
 }
 
 render () {
   return (
-      <section className="SessionDetailsBody body">
+      <section>
         {this.showSessionDetails()}
         {this.showSessionSpecs()}
         {this.statusAccordion()}

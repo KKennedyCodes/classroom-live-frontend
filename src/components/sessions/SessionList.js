@@ -107,6 +107,7 @@ class SessionList extends React.Component {
       data={ this.state.sessions }
       columns={ columns }
       search
+      className="statusTable"
 >
   {
     props => (
@@ -129,10 +130,7 @@ class SessionList extends React.Component {
     }
     return (
       <section>
-
-
-    {this.tableSetup()}
-
+        {this.tableSetup()}
       </section>
     )};
 }

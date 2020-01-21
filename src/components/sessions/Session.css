@@ -41,3 +41,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.TabMenu {
+  background-color: white;
+}
+
+.SessionDetailsBody{
+  background-color: transparent;
+}

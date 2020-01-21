@@ -106,6 +106,6 @@ ul.header li a {
 .content li {
   margin-bottom: 10px;
 }
-.active {
+li .active {
   background-color: red;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Accordion, Card, ListGroup }  from 'react-bootstrap/';
 import Answer from './Answer.js';
 import AnswerForm from '../input/AnswerForm.js';
-// import './Session.css';
+import './Answer.css';
 
 class AnswerList extends React.Component {
   constructor(props) {

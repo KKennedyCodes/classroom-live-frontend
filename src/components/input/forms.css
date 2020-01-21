@@ -41,5 +41,6 @@ section {
 }
 
 .FormArea {
-  
+  background-color: transparent;
+  width: 80%;
 }

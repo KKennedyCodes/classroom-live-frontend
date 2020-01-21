@@ -9,6 +9,7 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import './App.css'
+import logo from "../src/images/ClassroomLogoWhite.png";
 class App extends Component {
   constructor() {
     super();
@@ -46,22 +47,25 @@ class App extends Component {
         //   </section>
         // </Router>
         // </div>
+        
         <Router>
         <section className="HomeContainer">
+        
         <ul className="header">
+          <li><img src={logo} alt="Logo" className="NavLogo"/></li>
           <li><NavLink to="/home">Welcome</NavLink></li>
           <li><NavLink to="/session/new">Create Session</NavLink></li>
           <li><NavLink to="/sessions">Session List</NavLink></li>
-          {this.state.sessionSelected ? <li><NavLink to={this.state.link}>Session Details</NavLink></li> : ""}
+          {this.state.sessionSelected ? <li><NavLink to={this.state.link} className="optionalLink">Session Details</NavLink></li> : ""}
         </ul>
         <div className="content">
           <Route exact path="/" component={Home}/>
           <Route path="/home" component={Home}/>
           <Route path="/session/new" component={LiveForm}/>
           <Route exact path="/sessions">
-          <SessionList selectSession={this.selectSession} />
+            <SessionList selectSession={this.selectSession} />
           </Route> 
-          <Route path="/sessions/:id" component={SessionDetails} />
+          <Route exact path="/sessions/:id" component={SessionDetails} />
           {/* <Route path="/sessions/:id">
             <SessionDetails session={this.state.session} />
             </Route> */}

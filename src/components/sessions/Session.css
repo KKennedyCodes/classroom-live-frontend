@@ -38,8 +38,9 @@ body {
   margin: 0;
   text-align: center;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
+  background-color: transparent;
 }
 
 .TabMenu {

@@ -45,10 +45,10 @@ class LiveForm extends React.Component {
 
   render() {
     return (
-      <section className="FormArea">
+      <section>
         <h4>Create New Session</h4> 
         <hr color="red"/>
-        <Form onSubmit={this.submitHandler} className="largeInput">
+        <Form onSubmit={this.submitHandler}>
           
           <Form.Group controlId="LiveForm">
             <Form.Label>Task: </Form.Label><br />

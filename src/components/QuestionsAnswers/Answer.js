@@ -1,6 +1,6 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-// import './Session.css';
+import './Answer.css';
 
 class AnswerList extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class AnswerList extends React.Component {
 
   render () {
     return (
-      <ListGroup.Item>A:  {this.props.answer_text}</ListGroup.Item>
+      <ListGroup.Item className="AnswerList">A:  {this.props.answer_text}</ListGroup.Item>
     )};
 }
 

@@ -68,6 +68,7 @@ class SessionList extends React.Component {
           redirectTo: row.id,
           redirect: true,
         });
+        this.props.selectSession(row);
         // browserHistory.push(`/${rowIndex}`);
         // "/sessions/" +  session.id
         // this.props.selectSession(row);
@@ -111,12 +112,12 @@ class SessionList extends React.Component {
 >
   {
     props => (
-      <div>
+      <div >
         <h4>Search Sessions:</h4>
       <SearchBar { ...props.searchProps } />
       <hr color="red"/>
       <p className="note">Choose Row and Click Session Details for More<br />Click Column Headers to Sort</p>
-      <BootstrapTable pagination={ pagination } selectRow={ selectRow } { ...props.baseProps } />
+      <BootstrapTable  selectRow={ selectRow } { ...props.baseProps } />
       </div>
     )
     }

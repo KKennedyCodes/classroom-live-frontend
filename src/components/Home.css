@@ -24,6 +24,7 @@
   position: fixed;
   top: 65px;
   left: 0;
+  background-color: transparent;
 }
 .HomeContent {
   background-color: transparent;
@@ -42,10 +43,6 @@ main {
 img {
   margin-bottom: -50px;  
   border-radius: 30px;
-  /* border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px; */
 }
 .HomeDescription {
   text-align: left;
@@ -65,7 +62,7 @@ h4 {
   font-weight: bold;
   font-family: 'Raleway', sans-serif;
   text-shadow: 1.25px 1.25px #000000;
-
+}
 
   /* background-color: white;
   padding-top: 15px;
@@ -73,4 +70,4 @@ h4 {
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
   width: 90%; */
-}
+

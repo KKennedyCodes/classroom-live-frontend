@@ -24,7 +24,6 @@ class SessionList extends React.Component {
 
   getSessionList = () => {
     let link = "https://classroomlive-basic-api.herokuapp.com/sessions";
-    // let link = "http://localhost:3000/sessions"
     const config = {
       headers: {
         'Access-Control-Allow-Origin': '*',

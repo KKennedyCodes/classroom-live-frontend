@@ -1,4 +1,4 @@
-.App {
+/* .App {
   font-family: 'Raleway', sans-serif;
 }
 
@@ -17,6 +17,10 @@ header {
   grid-column: 1 / span 3;
   width: 100%;
   border-bottom: solid 2px black;
+  background: rgba(255,255,255,0.9);
+  position: fixed;
+    left: 0;
+    right: 0;
 }
 
 img {
@@ -33,7 +37,7 @@ footer {
 
 /* body {
 } */
-h1, h2, p, ul, li {
+/* h1, h2, p, ul, li {
   color: red;
   font-weight: bold;
   font-family: 'Raleway', sans-serif;
@@ -53,6 +57,7 @@ ul.header li a {
   text-decoration: none;
   padding: 20px;
   display: inline-block;
+  background: rgba(255,0,0,0.9);
 }
 .content {
   background-color: transparent;
@@ -64,4 +69,43 @@ ul.header li a {
 }
 .content li {
   margin-bottom: 10px;
+} */ */
+
+body {
+  background-color: #FFCC00;
+  padding: 20px;
+  margin: 0;
+}
+h1, h2, p, ul, li {
+  font-family: sans-serif;
+}
+ul.header li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+ul.header {
+  background-color: #111;
+  padding: 0;
+}
+ul.header li a {
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px;
+  display: inline-block;
+}
+.content {
+  background-color: #FFF;
+  padding: 20px;
+}
+.content h2 {
+  padding: 0;
+  margin: 0;
+}
+.content li {
+  margin-bottom: 10px;
+}
+.active {
+  background-color: red;
 }

@@ -32,7 +32,6 @@ class StatusForm extends React.Component {
   }
   onSubmit = (data) =>{
     let link = "https://classroomlive-basic-api.herokuapp.com/questions";
-    // let link= "http://localhost:3000/posts";
     data.preventDefault();
     data.target.reset();
     axios({

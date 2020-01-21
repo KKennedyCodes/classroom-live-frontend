@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Redirect } from "react-router-dom";
 import axios from 'axios'
 import './forms.css';
 class LiveForm extends React.Component {
@@ -33,8 +34,9 @@ class LiveForm extends React.Component {
         date: this.state.date,
       }
     }).then((response) => {
-      console.log(response);
-      
+      console.log(response.data);
+      // this.props.history.push(`/sessions/${id}`);    
+      this.props.history.push(`/sessions/`)
     }, (error) =>{
       console.log(error);
     });
@@ -43,7 +45,7 @@ class LiveForm extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="FormArea">
         <h4>Create New Session</h4> 
         <hr color="red"/>
         <Form onSubmit={this.submitHandler} className="largeInput">
@@ -54,9 +56,8 @@ class LiveForm extends React.Component {
           </Form.Group>
           <Form.Group controlId="TaskObjective">
             <Form.Label>Task Objective:</Form.Label><br />
-            <Form.Control as="textarea" className="largeInput" name="objective" placeholer="Enter Task Objective" rows="3" onChange={this.onChange}/>
+            <Form.Control as="textarea" className="largeInput" name="objective" placeholder="Enter Task Objective" rows="3" onChange={this.onChange}/>
           </Form.Group>
-          {/* <hr className="comment"/> */}
           <Button variant="outline-danger" type="submit" className="submitButton">
             Create Session
           </Button>
